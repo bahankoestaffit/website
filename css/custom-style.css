@@ -1,0 +1,205 @@
+/* Bar merah harus di atas navbar */
+.top-header {
+  background-color: #d10606;
+  height: 50px;
+  width: 100%;
+  position: relative;
+  padding:6px 0;
+  z-index: 10; /* pastikan muncul di atas */
+  
+ }
+.language-switcher {
+  position: absolute;
+  top: 15px;          
+  right: 40px;        
+  z-index: 9999;      
+  background: transparent;
+  text-align: right;
+  padding-right: 40px;
+
+}
+
+.language-switcher button {
+  background: transparent;
+  border: none;
+  color: #000;        
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: color 0.3s ease;
+}
+
+.language-switcher button:hover {
+  color: #ff960d;     
+}
+
+
+/* Pastikan navbar di bawah bar merah */
+.navbar {
+  background-color: #ffffff !important;
+  position: relative;
+  top: 0;
+  z-index: 5;
+  margin-top: 0; /* hindari jarak aneh */
+}
+
+/* Warna teks navbar */
+.navbar .nav-link {
+  color: #000000;
+  font-weight: 500;
+}
+
+.navbar .nav-link:hover {
+  color: #d10606; /* merah saat hover */
+}
+
+/* Tombol scroll ke atas */
+#scrollToTopBtn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 99;
+  background-color: #d10606; /* warna merah sesuai tema */
+  color: white;
+  border: none;
+  outline: none;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  display: none; /* disembunyikan awalnya */
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Efek hover */
+#scrollToTopBtn:hover {
+  background-color: #ff960d; /* warna sekunder */
+  transform: scale(1.1);
+}
+
+/* ====== CABANG SECTION ====== */
+.latest-podcast-section .section-title {
+  background-color: #f44336;
+  color: #fff;
+  padding: 5px 20px;
+  border-radius: 50px;
+  display: inline-block;
+}
+
+.podcast-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.podcast-container {
+  display: flex;
+  gap: 20px;
+  transition: transform 0.5s ease;
+}
+
+.custom-block {
+  flex: 0 0 calc(50% - 10px); /* dua card per tampilan */
+  background: #fff;
+  border: 2px solid #f44336;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  transition: transform 0.3s;
+}
+
+.custom-block:hover {
+  transform: translateY(-5px);
+}
+
+/* Tombol Navigasi */
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #f44336;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.3rem;
+  cursor: pointer;
+  z-index: 2;
+  transition: background 0.3s;
+}
+
+.nav-btn:hover {
+  background: #d32f2f;
+}
+
+.prev-btn {
+  left: -20px;
+}
+
+.next-btn {
+  right: -20px;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+  .custom-block {
+    flex: 0 0 100%;
+  }
+}
+
+.podcast-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.podcast-container {
+  display: flex;
+  gap: 20px;
+  transition: transform 0.5s ease;
+}
+
+.custom-block {
+  min-width: 48%;
+  flex-shrink: 0;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding: 40px 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.3s;
+}
+
+.nav-btn:hover {
+  background: #d63031;
+}
+
+.prev-btn {
+  left: -20px;
+}
+
+.next-btn {
+  right: -20px;
+}
+ 
