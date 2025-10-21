@@ -241,3 +241,74 @@ function closePopup(wrapper) {
 window.slideCards = slideCards;
 window.goToSlide = goToSlide;
 window.autoPlay = autoPlay;
+
+// Tambahkan ini di akhir file JS Anda untuk memanggil fungsi saat halaman siap
+document.addEventListener('DOMContentLoaded', initPopup);
+
+function initPopup() {
+  const showButtons = document.querySelectorAll(".social-icon-link");
+
+  showButtons.forEach(btn => {
+    btn.addEventListener("click", async e => {
+      e.preventDefault();
+      const popupName = btn.dataset.popup;
+      
+      if (!popupName) {
+        console.warn("data-popup attribute tidak ditemukan");
+        return;
+      }
+
+      try {
+        const res = await fetch(`${popupName}.html`);
+        if (!res.ok) throw new Error(`File ${popupName}.html tidak ditemukan`);
+        const html = await res.text();
+
+        // Buat wrapper popup
+        const wrapper = document.createElement("div");
+        wrapper.classList.add("popup-card");
+        wrapper.innerHTML = html;
+        document.body.appendChild(wrapper);
+
+        // Tampilkan popup dengan animasi
+        setTimeout(() => {
+          wrapper.classList.add("show"); // Gunakan class untuk animasi
+        }, 10);
+
+        // Tombol tutup
+        const closeBtn = wrapper.querySelector(".close-btn");
+        if (closeBtn) {
+          closeBtn.addEventListener("click", () => closePopup(wrapper));
+        }
+
+        // Klik di luar popup
+        wrapper.addEventListener("click", e => {
+          if (e.target === wrapper) closePopup(wrapper);
+        });
+
+        // ESC key untuk tutup
+        const escHandler = (e) => {
+          if (e.key === 'Escape') {
+            closePopup(wrapper);
+            document.removeEventListener('keydown', escHandler);
+          }
+        };
+        document.addEventListener('keydown', escHandler);
+
+      } catch (err) {
+        console.error("Gagal memuat popup:", err);
+        // Hapus alert, ganti dengan log (atau tampilkan pesan di UI jika perlu)
+      }
+    });
+  });
+}
+
+/**
+ * Close popup dengan animasi
+ * @param {HTMLElement} wrapper - Popup wrapper element
+ */
+function closePopup(wrapper) {
+  wrapper.classList.remove("show");
+  setTimeout(() => {
+    wrapper.remove();
+  }, 300);
+}
