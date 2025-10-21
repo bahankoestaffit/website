@@ -1,66 +1,35 @@
-//popup
-document.addEventListener("DOMContentLoaded", () => {
-  const showButtons = document.querySelectorAll(".social-icon-link");
-
-  showButtons.forEach(btn => {
-    btn.addEventListener("click", async e => {
-      e.preventDefault();
-      const popupName = btn.dataset.popup;
-      try {
-        const res = await fetch(`${popupName}.html`);   
-        if (!res.ok) throw new Error(`File ${popupName}.html tidak ditemukan`);
-        const html = await res.text();
-
-        // buat wrapper popup
-        const wrapper = document.createElement("div");
-        wrapper.classList.add("popup-card");
-        wrapper.innerHTML = html;
-        document.body.appendChild(wrapper);
-
-        // tampilkan popup
-        wrapper.style.display = "flex";
-
-        // tombol tutup
-        const closeBtn = wrapper.querySelector(".close-btn");
-        if (closeBtn) {
-          closeBtn.addEventListener("click", () => wrapper.remove());
-        }
-
-        // klik di luar popup
-        wrapper.addEventListener("click", e => {
-          if (e.target === wrapper) wrapper.remove();
-        });
-
-      } catch (err) {
-        console.error("Gagal memuat popup:", err);
-      }
-    });
-  });
-}); //akhir popup
-
-//cabang js
 /**
- * PODCAST SLIDER
- * Manual navigation slider untuk podcast cards
+ * ===========================
+ * MAIN SCRIPT - WEBSITE BAHANKOE
+ * ===========================
  */
+
+// ===========================
+// PODCAST SLIDER
+// ===========================
 
 // State management
 let currentIndex = 0;
 
 // DOM Elements
-const container = document.getElementById('podcastContainer');
-const prevBtn = document.querySelector('.prev-btn');
-const nextBtn = document.querySelector('.next-btn');
+let container = null;
+let prevBtn = null;
+let nextBtn = null;
 
 // Initialize saat DOM loaded
 document.addEventListener('DOMContentLoaded', function() {
   initSlider();
+  initPopup();
 });
 
 /**
  * Initialize slider
  */
 function initSlider() {
+  container = document.getElementById('podcastContainer');
+  prevBtn = document.querySelector('.prev-btn');
+  nextBtn = document.querySelector('.next-btn');
+  
   if (!container) return;
   
   updateButtons();
@@ -81,6 +50,7 @@ function getCardsPerView() {
  * Get total cards
  */
 function getTotalCards() {
+  if (!container) return 0;
   return container.querySelectorAll('.custom-block').length;
 }
 
@@ -89,6 +59,8 @@ function getTotalCards() {
  * @param {string} direction - 'next' atau 'prev'
  */
 function slideCards(direction) {
+  if (!container) return;
+  
   const cardsPerView = getCardsPerView();
   const totalCards = getTotalCards();
   const maxIndex = totalCards - cardsPerView;
@@ -106,6 +78,8 @@ function slideCards(direction) {
  * Update posisi slider
  */
 function updateSlider() {
+  if (!container) return;
+  
   const cards = container.querySelectorAll('.custom-block');
   if (cards.length === 0) return;
 
@@ -184,8 +158,86 @@ function autoPlay(interval = 5000) {
   }, interval);
 }
 
-// Export functions untuk digunakan di HTML (optional)
-// Bisa dipanggil langsung dari onclick atau addEventListener
+// ===========================
+// POPUP FUNCTIONALITY
+// ===========================
+
+/**
+ * Initialize popup
+ */
+function initPopup() {
+  const showButtons = document.querySelectorAll(".social-icon-link");
+
+  showButtons.forEach(btn => {
+    btn.addEventListener("click", async e => {
+      e.preventDefault();
+      const popupName = btn.dataset.popup;
+      
+      if (!popupName) {
+        console.warn("data-popup attribute tidak ditemukan");
+        return;
+      }
+
+      try {
+        const res = await fetch(`${popupName}.html`);
+        if (!res.ok) throw new Error(`File ${popupName}.html tidak ditemukan`);
+        const html = await res.text();
+
+        // Buat wrapper popup
+        const wrapper = document.createElement("div");
+        wrapper.classList.add("popup-card");
+        wrapper.innerHTML = html;
+        document.body.appendChild(wrapper);
+
+        // Tampilkan popup dengan delay untuk animasi
+        setTimeout(() => {
+          wrapper.style.display = "flex";
+        }, 10);
+
+        // Tombol tutup
+        const closeBtn = wrapper.querySelector(".close-btn");
+        if (closeBtn) {
+          closeBtn.addEventListener("click", () => closePopup(wrapper));
+        }
+
+        // Klik di luar popup
+        wrapper.addEventListener("click", e => {
+          if (e.target === wrapper) closePopup(wrapper);
+        });
+
+        // ESC key untuk tutup
+        const escHandler = (e) => {
+          if (e.key === 'Escape') {
+            closePopup(wrapper);
+            document.removeEventListener('keydown', escHandler);
+          }
+        };
+        document.addEventListener('keydown', escHandler);
+
+      } catch (err) {
+        console.error("Gagal memuat popup:", err);
+        alert(`Tidak dapat memuat popup: ${popupName}.html`);
+      }
+    });
+  });
+}
+
+/**
+ * Close popup dengan animasi
+ * @param {HTMLElement} wrapper - Popup wrapper element
+ */
+function closePopup(wrapper) {
+  wrapper.style.opacity = '0';
+  setTimeout(() => {
+    wrapper.remove();
+  }, 300);
+}
+
+// ===========================
+// EXPORT FUNCTIONS
+// ===========================
+
+// Export ke window agar bisa dipanggil dari HTML
 window.slideCards = slideCards;
 window.goToSlide = goToSlide;
 window.autoPlay = autoPlay;
