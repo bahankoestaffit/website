@@ -249,7 +249,7 @@ main {
   SITE HEADER              
 -----------------------------------------*/
 .site-header {
-  background-image: url('../images/templatemo-wave-header.jpg'), linear-gradient(#d10606, #FFFFFF);;
+  background-image: url('../images/bg2.jpg'), linear-gradient(#d10606, #FFFFFF);;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -266,14 +266,15 @@ main {
   NAVIGATION              
 -----------------------------------------*/
 .navbar {
-  background-color: transparent;
-  position: absolute;
+  background-color: rgba(255, 255, 255, 0.95);
+  position: fixed;
   top: 0;
   right: 0;
   left: 0;
-  z-index: 9;
+  z-index: 1050;
   padding-top: 15px;
   padding-bottom: 15px;
+  transition: background-color 0.3s ease;
 }
 
 .navbar .navbar-brand,
@@ -319,13 +320,18 @@ main {
   padding-left: 18px;
 }
 
+.navbar .nav-link.active,
+.navbar .nav-link:hover {
+  color: var(--secondary-color);
+}
+
 .navbar-nav .nav-link.active, 
 .navbar-nav .nav-link:hover {
   color: var(--secondary-color);
 }
 
 .navbar .dropdown-menu {
-  background: var(--white-color);
+  background: var(--secondary-color);
   box-shadow: 0 1rem 3rem rgba(0,0,0,.175);
   border: 0;
   display: inherit;
@@ -396,23 +402,42 @@ main {
 
 .navbar .custom-border-btn {
   border-color: var(--white-color);
-  color: var(--white-color);
+  color: var(--secondary-color);
 }
 
 .navbar .custom-border-btn:hover {
   background: var(--white-color);
-  color: var(--secondary-color);
+  color: #333;
 }
 
 .navbar-toggler {
-  border: 0;
-  padding: 0;
+  color: #fcb42f; /* warna ikon */
+  border: 2px solid #fcb42f; /* garis tombol */
+  border-radius: 8px; /* sudut membulat */
+  padding: 6px 8px;
   cursor: pointer;
   margin: 0;
-  width: 30px;
-  height: 35px;
+  width: 40px;
+  height: 40px;
+  outline: none;
+  transition: all 0.3s ease;
+  background-color: transparent;
+}
+
+/* Hover efek elegan */
+.navbar-toggler:hover {
+  background-color: #fcb42f;
+  color: #fff;
+  transform: scale(1.05);
+  box-shadow: 0 0 8px rgba(252, 180, 47, 0.5);
+}
+
+/* Fokus (saat ditekan di mobile) */
+.navbar-toggler:focus {
+  box-shadow: 0 0 0 3px rgba(252, 180, 47, 0.3);
   outline: none;
 }
+
 
 .navbar-toggler:focus {
   outline: none;
@@ -487,215 +512,324 @@ main {
 }
 
 
+/* ===========================
+   OWL CAROUSEL - IMPROVED
+   =========================== */
+
+/* Base Carousel Container */
 .owl-carousel {
-  text-align: center;
-  width: auto;
-}
-
-.owl-item .item:hover {
-  transform: scale(1.1);
-  z-index: 5;
-}
-
-
-/* Semua item carousel default lebih kecil */
-.owl-carousel .item {
-  transform: scale(0.8);
-  opacity: 0.6;
-  transition: all 0.4s ease-in-out;
-  height: 380px;            
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;       
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
-  position: relative;
-}
-
-/* Item yang di tengah (otomatis dikasih class .center) */
-.owl-carousel .owl-item.center .item {
-  transform: scale(1.15); 
-  opacity: 1; 
-  z-index: 5; 
-  box-shadow: 0 14px 40px rgba(0,0,0,0.25);
-}
-
-
-.owl-carousel .owl-item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: transform 0.35s ease, opacity 0.35s ease;
-}
-
-.owl-carousel .owl-item:not(.center) .item img {
-  filter: blur(1px) brightness(0.8);
-   transition: transform 0.35s ease, opacity 0.35s ease;
-}
-
-
-.owl-carousel-image {
-  display: block;
-  max-width: 100%;
-  max-height: 100%;
-  height: 100%;
-  width: auto;
-  object-fit: cover; 
-  object-position: center; 
-  border-radius: 16px;
-  transition: all 0.4s ease;
-}
-
-
-.owl-item.center .owl-carousel-image {
-  height: 400px; 
-  transform: scale(1.05);
-}
-
-.owl-carousel-info-wrap {
-  text-align: center;
-  overflow: hidden;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.1);
-  position: relative;
-  transition: all 0.3s ease;
-}
-.owl-carousel-info h4 {
-    position: absolute;
-  bottom: 10px;
-  left: 0;
   width: 100%;
-  color: #fff;
-  text-align: center;
-  font-size: 1.3rem; /* ukuran default */
-  font-weight: 700;
-  margin-top: 10px;
-}
-
-.owl-item.center .owl-carousel-info h4 {
-  font-size: 1.5rem; /* lebih besar di item tengah */
-}
-
-/* Untuk layar kecil atau gambar landscape, teks menyesuaikan */
-@media (max-width: 768px) {
-  .owl-carousel-info h4 {
-    font-size: 1rem; 
-  }
-   .owl-carousel .item { height: 260px;}
-   .owl-carousel .owl-item.center .item img { transform: scale(1.02); }
-}
-
-@media (orientation: landscape) {
-  .owl-carousel-info h4 {
-    font-size: 1.1rem;
-  }
-}
-
-
-
-.owl-carousel .owl-item .owl-carousel-verified-image {
-  display: inline-block;
-  width: 30px;
-  height: auto;
   position: relative;
-  right: 5px;
+  text-align: center;
+  margin: 0 auto;
 }
 
-.verified-image {
-  display: inline-block;
-  width: 20px;
-  height: auto;
-}
-
+/* Owl Item Wrapper */
 .owl-carousel .owl-item {
-  opacity: 0.35;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.4;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.owl-carousel .owl-item.active {
+  opacity: 0.6;
 }
 
 .owl-carousel .owl-item.active.center {
   opacity: 1;
 }
 
+/* Carousel Item */
+.owl-carousel .item {
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  border-radius: 16px;
+  transform: scale(0.8);
+  opacity: 0.6;
+  transition: all 0.4s ease-in-out;
+}
+
+/* Center Item - Main Focus */
+.owl-carousel .owl-item.center .item {
+  transform: scale(1.15);
+  opacity: 1;
+  z-index: 5;
+  box-shadow: 0 14px 40px #fcb42f;
+}
+
+/* Hover Effect */
+.owl-item .item:hover {
+  transform: scale(1.1);
+  z-index: 5;
+}
+
+/* ===========================
+   IMAGE STYLES
+   =========================== */
+
+.owl-carousel-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 16px;
+  transition: all 0.4s ease;
+}
+
+/* Blur effect for non-center items */
+.owl-carousel .owl-item:not(.center) .item img {
+  filter: blur(1px) brightness(0.8);
+}
+
+/* Center image enhancement */
+.owl-carousel .owl-item.center .owl-carousel-image {
+  filter: none;
+  height: 400px;
+  transform: scale(1.05);
+}
+
+/* ===========================
+   INFO WRAPPER & BADGE
+   =========================== */
+
 .owl-carousel-info-wrap {
-  border-radius: var(--border-radius-medium);
   position: relative;
   overflow: hidden;
-  text-align: left;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
 }
 
 .owl-carousel-info {
   background-color: var(--section-bg-color);
-  box-shadow: 0 1rem 3rem rgba(0,0,0,.175);
+  box-shadow: 0 1rem 3rem #fcb42f;
   position: absolute;
   bottom: 20px;
   right: 0;
   left: 0;
   padding: 10px;
+  border-radius: 0 0 12px 12px;
 }
 
+.owl-carousel-info h4 {
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0;
+  transition: font-size 0.3s ease;
+}
+
+.owl-item.center .owl-carousel-info h4 {
+  font-size: 1.5rem;
+}
+
+/* Badge */
 .badge {
   background-color: var(--custom-btn-bg-color);
   font-family: var(--title-font-family);
   border-radius: var(--border-radius-large);
   color: var(--white-color);
-  padding-bottom: 10px;
+  padding: 6px 14px;
+  display: inline-block;
 }
 
-.owl-carousel-info-wrap .social-share,
-.team-thumb .social-share {
+.owl-carousel-info {
+  background-color: var(--section-bg-color);
+  box-shadow: 0 1rem 3rem #fcb42f;
   position: absolute;
+  bottom: 20px;
   right: 0;
-  bottom: 0;
+  left: 0;
+  padding: 10px;
+  border-radius: 0 0 12px 12px;
 }
 
-.owl-carousel-info-wrap .social-icon,
-.team-thumb .social-icon {
+/* ===========================
+   SOCIAL ICONS
+   =========================== */
+
+.owl-carousel-info-wrap .social-share {
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
+  z-index: 5;
+}
+
+.owl-carousel-info-wrap .social-icon {
   opacity: 0;
-  transition: all 0.3s ease;
-  transform: translateX(0);
-  padding-right: 20px;
-  padding-left: 20px;
+  transform: translateY(20px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.owl-carousel .owl-item.active.center .owl-carousel-info-wrap:hover .social-icon,
-.team-thumb:hover .social-icon {
-  transform: translateY(-100%);
+.owl-carousel .owl-item.active.center .owl-carousel-info-wrap:hover .social-icon {
   opacity: 1;
+  transform: translateY(-10px);
 }
 
-.owl-carousel-info-wrap .social-icon-item,
-.owl-carousel-info-wrap .social-icon-link,
-.team-thumb .social-icon-item,
-.team-thumb .social-icon-link {
+.owl-carousel-info-wrap .social-icon-item {
   display: block;
-  margin-bottom: 10px;
-  margin-left: auto;
+  margin: 0;
 }
 
 .owl-carousel-info-wrap .social-icon-link {
-  margin-top: 5px;
-  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: #fcb42f;
+  backdrop-filter: blur(10px);
+  border-radius: 50%;
+  color: #fff;
+  transition: all 0.3s ease;
+  margin-left: auto;
 }
+
+.owl-carousel-info-wrap .social-icon-link:hover {
+  background: var(--custom-btn-bg-color);
+  transform: scale(1.1);
+}
+
+/* ===========================
+   DOTS NAVIGATION
+   =========================== */
 
 .owl-carousel .owl-dots {
   background-color: var(--white-color);
-  box-shadow: 0 1rem 3rem rgba(0,0,0,.175);
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175);
   border-radius: var(--border-radius-large);
   display: inline-block;
-  margin: auto;
-  margin-top: 40px;
-  padding: 15px 25px;
-  padding-bottom: 7px;
+  margin: 40px auto 0;
+  padding: 10px 20px;
 }
 
-.owl-theme .owl-nav.disabled+.owl-dots {
-  margin-top: 40px;
+.owl-dots {
+  text-align: center;
 }
 
-.owl-theme .owl-dots .owl-dot.active span, 
-.owl-theme .owl-dots .owl-dot:hover span {
+.owl-dots .owl-dot {
+  display: inline-block;
+  margin: 0 4px;
+}
+
+.owl-dots .owl-dot span {
+  width: 12px;
+  height: 12px;
+  background: #ccc;
+  display: block;
+  border-radius: 50%;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.owl-dots .owl-dot:hover span {
+  background: #bbb;
+  transform: scale(1.2);
+}
+
+.owl-dots .owl-dot.active span {
   background: var(--secondary-color);
+  width: 30px;
+  border-radius: 20px;
 }
 
+/* ===========================
+   RESPONSIVE DESIGN
+   =========================== */
+
+/* Tablet */
+@media (max-width: 991px) {
+  .owl-carousel .item {
+    height: 350px;
+  }
+
+  .owl-carousel-info h4 {
+    font-size: 1.2rem;
+  }
+
+  .owl-item.center .owl-carousel-info h4 {
+    font-size: 1.4rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .owl-carousel .item {
+    height: 280px;
+  }
+
+  .owl-carousel .owl-item.center .item {
+    transform: scale(1.08);
+  }
+
+  .owl-carousel-info {
+    padding: 15px 12px 12px;
+  }
+
+  .owl-carousel-info h4 {
+    font-size: 1rem;
+  }
+
+  .owl-item.center .owl-carousel-info h4 {
+    font-size: 1.2rem;
+  }
+
+  .badge {
+    font-size: 0.75rem;
+    padding: 5px 12px;
+  }
+
+  .owl-carousel-info-wrap .social-icon-link {
+    width: 35px;
+    height: 35px;
+  }
+
+  .owl-carousel .owl-dots {
+    margin-top: 30px;
+    padding: 10px 20px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .owl-carousel .item {
+    height: 240px;
+  }
+
+  .owl-carousel .owl-item.center .item {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  }
+
+  .owl-carousel-info h4 {
+    font-size: 0.9rem;
+  }
+
+  .owl-item.center .owl-carousel-info h4 {
+    font-size: 1.1rem;
+  }
+}
+
+/* Landscape Mode */
+@media (max-height: 600px) and (orientation: landscape) {
+  .owl-carousel .item {
+    height: 220px;
+  }
+
+  .owl-carousel-info h4 {
+    font-size: 0.95rem;
+  }
+}
 
 /*---------------------------------------
   CUSTOM BLOCK              

@@ -13,7 +13,8 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Sono:wght@200;300;400;500;700&display=swap" rel="stylesheet">
                         
         <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -25,7 +26,7 @@
         <link rel="stylesheet" href="css/owl.theme.default.min.css">
 
         <link href="css/templatemo-pod-talk.css" rel="stylesheet">
-        <link rel="stylesheet" href="css/custom-style.css">
+        <link href="css/custom-style.css" rel="stylesheet" >
 
     </head>
     <body>
@@ -39,47 +40,50 @@
                 </div>
                 </div>
             </div>
-            <!-- Navbar utama -->
-            <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
-                <div class="container">
-                    <a class="navbar-brand me-lg-5 me-0" href="index.html">
-                        <img src="images/logo.png" class="logo-image img-fluid" alt="bahankoe">
-                    </a>
+            
+                        <!-- Navbar utama -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+            <div class="container">
+                <a class="navbar-brand me-lg-5 me-0" href="index.html">
+                <img src="images/logo.png" class="logo-image img-fluid" alt="bahankoe">
+                </a>
 
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
 
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav ms-lg-auto">
-                            <li class="nav-item">
-                                <a class="nav-link active" href="index.html">Home</a>
-                            </li>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-lg-auto">
+                    <li class="nav-item">
+                    <a class="nav-link active" href="index.html">Home</a>
+                    </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="about.html">About</a>
-                            </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                    </li>
 
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
+                    <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarLightDropdownMenuLink" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
+                    <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
+                        <li><a class="dropdown-item" href="listing-page.html">Listing Page</a></li>
+                        <li><a class="dropdown-item" href="detail-page.html">Detail Page</a></li>
+                    </ul>
+                    </li>
 
-                                <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
-                                    <li><a class="dropdown-item" href="listing-page.html">Listing Page</a></li>
-                                    <li><a class="dropdown-item" href="detail-page.html">Detail Page</a></li>
-                                </ul>
-                            </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="contact.html">Contact</a>
-                            </li>
-                        </ul>
-
-                        <div class="ms-4">
-                            <a href="#section_3" class="btn custom-btn custom-border-btn smoothscroll">Get started</a>
-                        </div>
-                    </div>
+                <div class="ms-4">
+                    <a href="#section_3" class="btn custom-btn custom-border-btn smoothscroll">Get started</a>
                 </div>
+                </div>
+            </div>
             </nav>
+
 
             <section class="hero-section">
                 <div class="container">
@@ -119,17 +123,18 @@
                                                 <a href="#" class="social-icon-link bi-instagram"></a>
                                             </li>
                                           <li class="social-icon-item">
-                                                <a href="#" class="social-icon-link bi-arrow-right-circle"></a>
+                                                <a href="#" class="social-icon-link bi-arrow-right-circle" data-popup="popup1"></a>
                                         </li>
                                         </ul>
                                     </div>
                                 </div>
+                           
 
                                 <div class="owl-carousel-info-wrap item">
                                     <img src="images/profile/cute-smiling-woman-outdoor-portrait.jpg" class="owl-carousel-image img-fluid" alt="">
 
                                     <div class="owl-carousel-info" ">
-                                        <span class="badge">Syarat & Ketentuan Berlaku</span>
+                                        <span class="badge"> Syarat & Ketentuan Berlaku</span>
                                     </div>
 
                                     <div class="social-share">
@@ -214,257 +219,212 @@
                 </div>
             </section>
 
-           <section class="latest-podcast-section section-padding pb-0" id="section_2">
-                <div class="container">
-                    <div class="col-lg-12 col-12 ">
-                        <div class="section-title-wrap mb-5">
-                            <br>
-                            <h4 class="section-title">Cabang Bahankoe</h4>
-                            <button class="nav-btn prev-btn"><i class="bi bi-chevron-left"></i></button>
-                            <button class="nav-btn next-btn"><i class="bi bi-chevron-right"></i></button>
-                </div>
-            </div>
+                <section class="latest-podcast-section py-5">
+                    <div class="container">
+                    
+                    <!-- Section Title -->
+                    <div class="col-lg-12 col-12">
+                            <div class="section-title-wrap mb-5">
+                                <h4 class="section-title">Cabang Bahankoe</h4>
+                            </div>
+                        </div>
 
-      <div class="col-lg-12">
-        <div class="podcast-wrapper position-relative">
+                    <!-- Podcast Slider Wrapper -->
+                    <div class="podcast-wrapper">
+                        
+                        <!-- Navigation Buttons -->
+                        <button class="nav-btn prev-btn" onclick="slideCards('prev')">
+                        <i class="bi bi-chevron-left"></i>
+                        </button>
+                        
+                        <button class="nav-btn next-btn" onclick="slideCards('next')">
+                        <i class="bi bi-chevron-right"></i>
+                        </button>
 
-          <!-- Kontainer Card -->
-          <div class="podcast-container">
-            
-            <!-- Card 1 -->
-            <div class="custom-block d-flex p-3">
-              <div class="custom-block-icon-wrap me-3">
-                <a href="#" class="custom-block-image-wrap position-relative d-block">
-                  <img src="images/podcast/1.jpg" class="custom-block-image img-fluid rounded-3" alt="">
-                  <button class="btn btn-danger btn-sm position-absolute start-50 top-50 translate-middle rounded-pill">
-                    <i class="bi-play-fill"></i>
-                  </button>
-                </a>
-                <button class="btn btn-danger btn-sm mt-2 rounded-pill">Subscribe</button>
-              </div>
+                        <!-- Cards Container -->
+                        <div class="podcast-container" id="podcastContainer">
+                        
+                        <!-- Card 1 -->
+                        <div class="custom-block d-flex p-3">
+                            <div class="custom-block-icon-wrap me-3">
+                            <a href="#" class="custom-block-image-wrap position-relative d-block">
+                                <img src="images/podcast/1.jpg" class="custom-block-image img-fluid rounded-3" alt="Podcast Cover">
+                                <button class="btn btn-danger btn-sm position-absolute start-50 top-50 translate-middle rounded-pill">
+                                <i class="bi-play-fill"></i>
+                                </button>
+                            </a>
+                            <button class="btn btn-danger btn-sm mt-2 rounded-pill">Subscribe</button>
+                            </div>
 
-              <div class="custom-block-info">
-                <div class="custom-block-top d-flex mb-2">
-                  <small class="me-4 text-muted">
-                    <i class="bi-clock-fill text-danger me-1"></i>50 Minutes
-                  </small>
-                  <small class="text-muted">Episode <span class="badge bg-danger">15</span></small>
-                </div>
+                            <div class="custom-block-info">
+                            <div class="custom-block-top d-flex mb-2">
+                                <small class="me-4 text-muted">
+                                <i class="bi-clock-fill text-danger me-1"></i>50 Minutes
+                                </small>
+                                <small class="text-muted">Episode <span class="badge bg-danger">15</span></small>
+                            </div>
 
-                <h5 class="fw-bold text-danger mb-1"><a href="#" class="text-decoration-none text-danger">Modern Vintage</a></h5>
-                <div class="profile-block d-flex align-items-center mb-2">
-                  <img src="images/profile/1.png" class="profile-block-image img-fluid rounded-circle me-2" alt="">
-                  <p class="mb-0">
-                    <strong>Elsa</strong>
-                    <img src="images/verified.png" class="verified-image img-fluid ms-1" alt="">
-                    <span class="d-block text-muted small">Influencer</span>
-                  </p>
-                </div>
+                            <h5 class="fw-bold text-danger mb-1">
+                                <a href="#" class="text-decoration-none text-danger">Modern Vintage</a>
+                            </h5>
+                            
+                            <div class="profile-block d-flex align-items-center mb-2">
+                                <img src="images/profile/1.png" class="profile-block-image img-fluid rounded-circle me-2" alt="Profile">
+                                <p class="mb-0">
+                                <strong>Elsa</strong>
+                                <img src="images/verified.png" class="verified-image img-fluid ms-1" alt="Verified" style="width: 16px; height: 16px;">
+                                <span class="d-block text-muted small">Influencer</span>
+                                </p>
+                            </div>
 
-                <p class="mb-2 text-muted small">Lorem Ipsum dolor sit amet consectetur.</p>
+                            <p class="mb-2 text-muted small">Lorem Ipsum dolor sit amet consectetur.</p>
 
-                <div class="custom-block-bottom d-flex justify-content-between text-muted small">
-                  <span><i class="bi-headphones me-1 text-danger"></i>120K</span>
-                  <span><i class="bi-heart me-1 text-danger"></i>42.5K</span>
-                  <span><i class="bi-chat me-1 text-danger"></i>11K</span>
-                  <span><i class="bi-download me-1 text-danger"></i>50K</span>
-                </div>
-              </div>
-            </div>
+                            <div class="custom-block-bottom d-flex justify-content-between text-muted small">
+                                <span><i class="bi-headphones me-1 text-danger"></i>120K</span>
+                                <span><i class="bi-heart me-1 text-danger"></i>42.5K</span>
+                                <span><i class="bi-chat me-1 text-danger"></i>11K</span>
+                                <span><i class="bi-download me-1 text-danger"></i>50K</span>
+                            </div>
+                            </div>
+                        </div>
 
-            <!-- Card  -->
-            <div class="custom-block d-flex p-3">
-              <div class="custom-block-icon-wrap me-3">
-                <a href="#" class="custom-block-image-wrap position-relative d-block">
-                  <img src="images/podcast/1.jpg" class="custom-block-image img-fluid rounded-3" alt="">
-                  <button class="btn btn-danger btn-sm position-absolute start-50 top-50 translate-middle rounded-pill">
-                    <i class="bi-play-fill"></i>
-                  </button>
-                </a>
-                <button class="btn btn-danger btn-sm mt-2 rounded-pill">Subscribe</button>
-              </div>
+                        <!-- Card 2 -->
+                        <div class="custom-block d-flex p-3">
+                            <div class="custom-block-icon-wrap me-3">
+                            <a href="#" class="custom-block-image-wrap position-relative d-block">
+                                <img src="images/podcast/2.jpg" class="custom-block-image img-fluid rounded-3" alt="Podcast Cover">
+                                <button class="btn btn-danger btn-sm position-absolute start-50 top-50 translate-middle rounded-pill">
+                                <i class="bi-play-fill"></i>
+                                </button>
+                            </a>
+                            <button class="btn btn-danger btn-sm mt-2 rounded-pill">Subscribe</button>
+                            </div>
 
-              <div class="custom-block-info">
-                <div class="custom-block-top d-flex mb-2">
-                  <small class="me-4 text-muted">
-                    <i class="bi-clock-fill text-danger me-1"></i>50 Minutes
-                  </small>
-                  <small class="text-muted">Episode <span class="badge bg-danger">15</span></small>
-                </div>
+                            <div class="custom-block-info">
+                            <div class="custom-block-top d-flex mb-2">
+                                <small class="me-4 text-muted">
+                                <i class="bi-clock-fill text-danger me-1"></i>45 Minutes
+                                </small>
+                                <small class="text-muted">Episode <span class="badge bg-danger">14</span></small>
+                            </div>
 
-                <h5 class="fw-bold text-danger mb-1"><a href="#" class="text-decoration-none text-danger">Modern Vintage</a></h5>
-                <div class="profile-block d-flex align-items-center mb-2">
-                  <img src="images/profile/1.png" class="profile-block-image img-fluid rounded-circle me-2" alt="">
-                  <p class="mb-0">
-                    <strong>Elsa</strong>
-                    <img src="images/verified.png" class="verified-image img-fluid ms-1" alt="">
-                    <span class="d-block text-muted small">Influencer</span>
-                  </p>
-                </div>
+                            <h5 class="fw-bold text-danger mb-1">
+                                <a href="#" class="text-decoration-none text-danger">Tech Talk Daily</a>
+                            </h5>
+                            
+                            <div class="profile-block d-flex align-items-center mb-2">
+                                <img src="images/profile/2.png" class="profile-block-image img-fluid rounded-circle me-2" alt="Profile">
+                                <p class="mb-0">
+                                <strong>John</strong>
+                                <img src="images/verified.png" class="verified-image img-fluid ms-1" alt="Verified" style="width: 16px; height: 16px;">
+                                <span class="d-block text-muted small">Tech Enthusiast</span>
+                                </p>
+                            </div>
 
-                <p class="mb-2 text-muted small">Lorem Ipsum dolor sit amet consectetur.</p>
+                            <p class="mb-2 text-muted small">Discussing latest technology trends and innovations.</p>
 
-                <div class="custom-block-bottom d-flex justify-content-between text-muted small">
-                  <span><i class="bi-headphones me-1 text-danger"></i>120K</span>
-                  <span><i class="bi-heart me-1 text-danger"></i>42.5K</span>
-                  <span><i class="bi-chat me-1 text-danger"></i>11K</span>
-                  <span><i class="bi-download me-1 text-danger"></i>50K</span>
-                </div>
-              </div>
-            </div>
+                            <div class="custom-block-bottom d-flex justify-content-between text-muted small">
+                                <span><i class="bi-headphones me-1 text-danger"></i>95K</span>
+                                <span><i class="bi-heart me-1 text-danger"></i>38K</span>
+                                <span><i class="bi-chat me-1 text-danger"></i>8.5K</span>
+                                <span><i class="bi-download me-1 text-danger"></i>42K</span>
+                            </div>
+                            </div>
+                        </div>
 
+                        <!-- Card 3 -->
+                        <div class="custom-block d-flex p-3">
+                            <div class="custom-block-icon-wrap me-3">
+                            <a href="#" class="custom-block-image-wrap position-relative d-block">
+                                <img src="images/podcast/3.jpg" class="custom-block-image img-fluid rounded-3" alt="Podcast Cover">
+                                <button class="btn btn-danger btn-sm position-absolute start-50 top-50 translate-middle rounded-pill">
+                                <i class="bi-play-fill"></i>
+                                </button>
+                            </a>
+                            <button class="btn btn-danger btn-sm mt-2 rounded-pill">Subscribe</button>
+                            </div>
 
+                            <div class="custom-block-info">
+                            <div class="custom-block-top d-flex mb-2">
+                                <small class="me-4 text-muted">
+                                <i class="bi-clock-fill text-danger me-1"></i>60 Minutes
+                                </small>
+                                <small class="text-muted">Episode <span class="badge bg-danger">13</span></small>
+                            </div>
 
-            <!-- Card -->
-            <div class="custom-block d-flex p-3">
-              <div class="custom-block-icon-wrap me-3">
-                <a href="#" class="custom-block-image-wrap position-relative d-block">
-                  <img src="images/podcast/1.jpg" class="custom-block-image img-fluid rounded-3" alt="">
-                  <button class="btn btn-danger btn-sm position-absolute start-50 top-50 translate-middle rounded-pill">
-                    <i class="bi-play-fill"></i>
-                  </button>
-                </a>
-                <button class="btn btn-danger btn-sm mt-2 rounded-pill">Subscribe</button>
-              </div>
+                            <h5 class="fw-bold text-danger mb-1">
+                                <a href="#" class="text-decoration-none text-danger">Creative Minds</a>
+                            </h5>
+                            
+                            <div class="profile-block d-flex align-items-center mb-2">
+                                <img src="images/profile/3.png" class="profile-block-image img-fluid rounded-circle me-2" alt="Profile">
+                                <p class="mb-0">
+                                <strong>Sarah</strong>
+                                <img src="images/verified.png" class="verified-image img-fluid ms-1" alt="Verified" style="width: 16px; height: 16px;">
+                                <span class="d-block text-muted small">Creative Director</span>
+                                </p>
+                            </div>
 
-              <div class="custom-block-info">
-                <div class="custom-block-top d-flex mb-2">
-                  <small class="me-4 text-muted">
-                    <i class="bi-clock-fill text-danger me-1"></i>50 Minutes
-                  </small>
-                  <small class="text-muted">Episode <span class="badge bg-danger">15</span></small>
-                </div>
+                            <p class="mb-2 text-muted small">Exploring creativity in art and design world.</p>
 
-                <h5 class="fw-bold text-danger mb-1"><a href="#" class="text-decoration-none text-danger">Modern Vintage</a></h5>
-                <div class="profile-block d-flex align-items-center mb-2">
-                  <img src="images/profile/1.png" class="profile-block-image img-fluid rounded-circle me-2" alt="">
-                  <p class="mb-0">
-                    <strong>Elsa</strong>
-                    <img src="images/verified.png" class="verified-image img-fluid ms-1" alt="">
-                    <span class="d-block text-muted small">Influencer</span>
-                  </p>
-                </div>
+                            <div class="custom-block-bottom d-flex justify-content-between text-muted small">
+                                <span><i class="bi-headphones me-1 text-danger"></i>110K</span>
+                                <span><i class="bi-heart me-1 text-danger"></i>45K</span>
+                                <span><i class="bi-chat me-1 text-danger"></i>12K</span>
+                                <span><i class="bi-download me-1 text-danger"></i>55K</span>
+                            </div>
+                            </div>
+                        </div>
 
-                <p class="mb-2 text-muted small">Lorem Ipsum dolor sit amet consectetur.</p>
+                        <!-- Card 4 (Optional - untuk demo lebih dari 2 card) -->
+                        <div class="custom-block d-flex p-3">
+                            <div class="custom-block-icon-wrap me-3">
+                            <a href="#" class="custom-block-image-wrap position-relative d-block">
+                                <img src="images/podcast/4.jpg" class="custom-block-image img-fluid rounded-3" alt="Podcast Cover">
+                                <button class="btn btn-danger btn-sm position-absolute start-50 top-50 translate-middle rounded-pill">
+                                <i class="bi-play-fill"></i>
+                                </button>
+                            </a>
+                            <button class="btn btn-danger btn-sm mt-2 rounded-pill">Subscribe</button>
+                            </div>
 
-                <div class="custom-block-bottom d-flex justify-content-between text-muted small">
-                  <span><i class="bi-headphones me-1 text-danger"></i>120K</span>
-                  <span><i class="bi-heart me-1 text-danger"></i>42.5K</span>
-                  <span><i class="bi-chat me-1 text-danger"></i>11K</span>
-                  <span><i class="bi-download me-1 text-danger"></i>50K</span>
-                </div>
-              </div>
-            </div>
+                            <div class="custom-block-info">
+                            <div class="custom-block-top d-flex mb-2">
+                                <small class="me-4 text-muted">
+                                <i class="bi-clock-fill text-danger me-1"></i>40 Minutes
+                                </small>
+                                <small class="text-muted">Episode <span class="badge bg-danger">12</span></small>
+                            </div>
 
+                            <h5 class="fw-bold text-danger mb-1">
+                                <a href="#" class="text-decoration-none text-danger">Business Insights</a>
+                            </h5>
+                            
+                            <div class="profile-block d-flex align-items-center mb-2">
+                                <img src="images/profile/4.png" class="profile-block-image img-fluid rounded-circle me-2" alt="Profile">
+                                <p class="mb-0">
+                                <strong>Michael</strong>
+                                <img src="images/verified.png" class="verified-image img-fluid ms-1" alt="Verified" style="width: 16px; height: 16px;">
+                                <span class="d-block text-muted small">Business Coach</span>
+                                </p>
+                            </div>
 
+                            <p class="mb-2 text-muted small">Strategies for growing your business successfully.</p>
 
-            <!-- Card  -->
-            <div class="custom-block d-flex p-3">
-              <div class="custom-block-icon-wrap me-3">
-                <a href="#" class="custom-block-image-wrap position-relative d-block">
-                  <img src="images/podcast/1.jpg" class="custom-block-image img-fluid rounded-3" alt="">
-                  <button class="btn btn-danger btn-sm position-absolute start-50 top-50 translate-middle rounded-pill">
-                    <i class="bi-play-fill"></i>
-                  </button>
-                </a>
-                <button class="btn btn-danger btn-sm mt-2 rounded-pill">Subscribe</button>
-              </div>
+                            <div class="custom-block-bottom d-flex justify-content-between text-muted small">
+                                <span><i class="bi-headphones me-1 text-danger"></i>88K</span>
+                                <span><i class="bi-heart me-1 text-danger"></i>35K</span>
+                                <span><i class="bi-chat me-1 text-danger"></i>9K</span>
+                                <span><i class="bi-download me-1 text-danger"></i>40K</span>
+                            </div>
+                            </div>
+                        </div>
 
-              <div class="custom-block-info">
-                <div class="custom-block-top d-flex mb-2">
-                  <small class="me-4 text-muted">
-                    <i class="bi-clock-fill text-danger me-1"></i>50 Minutes
-                  </small>
-                  <small class="text-muted">Episode <span class="badge bg-danger">15</span></small>
-                </div>
+                        </div>
+                    </div>
+                    </div>
+                </section>
 
-                <h5 class="fw-bold text-danger mb-1"><a href="#" class="text-decoration-none text-danger">Modern Vintage</a></h5>
-                <div class="profile-block d-flex align-items-center mb-2">
-                  <img src="images/profile/1.png" class="profile-block-image img-fluid rounded-circle me-2" alt="">
-                  <p class="mb-0">
-                    <strong>Elsa</strong>
-                    <img src="images/verified.png" class="verified-image img-fluid ms-1" alt="">
-                    <span class="d-block text-muted small">Influencer</span>
-                  </p>
-                </div>
-
-                <p class="mb-2 text-muted small">Lorem Ipsum dolor sit amet consectetur.</p>
-
-                <div class="custom-block-bottom d-flex justify-content-between text-muted small">
-                  <span><i class="bi-headphones me-1 text-danger"></i>120K</span>
-                  <span><i class="bi-heart me-1 text-danger"></i>42.5K</span>
-                  <span><i class="bi-chat me-1 text-danger"></i>11K</span>
-                  <span><i class="bi-download me-1 text-danger"></i>50K</span>
-                </div>
-              </div>
-            </div>
-
-
-
-            <!-- Card 2 -->
-            <div class="custom-block d-flex p-3">
-              <div class="custom-block-icon-wrap me-3">
-                <a href="#" class="custom-block-image-wrap position-relative d-block">
-                  <img src="images/podcast/2.jpg" class="custom-block-image img-fluid rounded-3" alt="">
-                  <button class="btn btn-danger btn-sm position-absolute start-50 top-50 translate-middle rounded-pill">
-                    <i class="bi-play-fill"></i>
-                  </button>
-                </a>
-                <button class="btn btn-danger btn-sm mt-2 rounded-pill">Subscribe</button>
-              </div>
-
-              <div class="custom-block-info">
-                <div class="custom-block-top d-flex mb-2">
-                  <small class="me-4 text-muted">
-                    <i class="bi-clock-fill text-danger me-1"></i>15 Minutes
-                  </small>
-                  <small class="text-muted">Episode <span class="badge bg-danger">45</span></small>
-                </div>
-
-                <h5 class="fw-bold text-danger mb-1"><a href="#" class="text-decoration-none text-danger">Daily Talk</a></h5>
-                <div class="profile-block d-flex align-items-center mb-2">
-                  <img src="images/profile/2.png" class="profile-block-image img-fluid rounded-circle me-2" alt="">
-                  <p class="mb-0">
-                    <strong>William</strong>
-                    <img src="images/verified.png" class="verified-image img-fluid ms-1" alt="">
-                    <span class="d-block text-muted small">Vlogger</span>
-                  </p>
-                </div>
-
-                <p class="mb-2 text-muted small">Lorem Ipsum dolor sit amet consectetur.</p>
-
-                <div class="custom-block-bottom d-flex justify-content-between text-muted small">
-                  <span><i class="bi-headphones me-1 text-danger"></i>140K</span>
-                  <span><i class="bi-heart me-1 text-danger"></i>22.4K</span>
-                  <span><i class="bi-chat me-1 text-danger"></i>16K</span>
-                  <span><i class="bi-download me-1 text-danger"></i>62K</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Card 3 (contoh tambahan) -->
-            <div class="custom-block d-flex p-3">
-              <div class="custom-block-icon-wrap me-3">
-                <a href="#" class="custom-block-image-wrap position-relative d-block">
-                  <img src="images/podcast/3.jpg" class="custom-block-image img-fluid rounded-3" alt="">
-                  <button class="btn btn-danger btn-sm position-absolute start-50 top-50 translate-middle rounded-pill">
-                    <i class="bi-play-fill"></i>
-                  </button>
-                </a>
-                <button class="btn btn-danger btn-sm mt-2 rounded-pill">Subscribe</button>
-              </div>
-              <div class="custom-block-info">
-                <h5 class="fw-bold text-danger mb-1"><a href="#" class="text-decoration-none text-danger">Creative Corner</a></h5>
-                <p class="mb-2 text-muted small">Lorem Ipsum dolor sit amet consectetur.</p>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 
             <section class="topics-section section-padding pb-0" id="section_3">
@@ -836,7 +796,8 @@
         <script src="js/bootstrap.bundle.min.js"></script>
         <script src="js/owl.carousel.min.js"></script>
         <script src="js/custom.js"></script>
-
+        <script src="js/script.js"></script>
+    
         <!-- Tombol Scroll to Top -->
     <button id="scrollToTopBtn" title="Kembali ke atas">
         <i class="bi bi-arrow-up"></i>

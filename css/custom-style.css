@@ -81,17 +81,27 @@
 }
 
 /* ====== CABANG SECTION ====== */
+/* ===========================
+   LATEST PODCAST SECTION
+   =========================== */
+
 .latest-podcast-section .section-title {
   background-color: #f44336;
   color: #fff;
   padding: 5px 20px;
   border-radius: 50px;
   display: inline-block;
+  font-weight: 600;
 }
+
+/* ===========================
+   PODCAST SLIDER WRAPPER
+   =========================== */
 
 .podcast-wrapper {
   position: relative;
   overflow: hidden;
+  padding: 0 50px; /* ruang untuk tombol nav */
 }
 
 .podcast-container {
@@ -100,106 +110,343 @@
   transition: transform 0.5s ease;
 }
 
+/* ===========================
+   PODCAST CARD
+   =========================== */
+
 .custom-block {
-  flex: 0 0 calc(50% - 10px); /* dua card per tampilan */
+  flex: 0 0 calc(50% - 10px); /* 2 card per view */
+  min-width: calc(50% - 10px);
   background: #fff;
   border: 2px solid #f44336;
   border-radius: 15px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-  transition: transform 0.3s;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: all 0.3s ease;
 }
 
 .custom-block:hover {
   transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(244, 67, 54, 0.2);
 }
 
-/* Tombol Navigasi */
+/* Card layout internal */
+.custom-block.d-flex {
+  display: flex;
+  gap: 15px;
+}
+
+/* ===========================
+   NAVIGATION BUTTONS
+   =========================== */
+
 .nav-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: #f44336;
+  background: #000;
   color: #fff;
   border: none;
   border-radius: 50%;
   width: 40px;
   height: 40px;
-  font-size: 1.3rem;
-  cursor: pointer;
-  z-index: 2;
-  transition: background 0.3s;
-}
-
-.nav-btn:hover {
-  background: #d32f2f;
-}
-
-.prev-btn {
-  left: -20px;
-}
-
-.next-btn {
-  right: -20px;
-}
-
-/* Responsif */
-@media (max-width: 768px) {
-  .custom-block {
-    flex: 0 0 100%;
-  }
-}
-
-.podcast-wrapper {
-  position: relative;
-  overflow: hidden;
-}
-
-.podcast-container {
-  display: flex;
-  gap: 20px;
-  transition: transform 0.5s ease;
-}
-
-.custom-block {
-  min-width: 48%;
-  flex-shrink: 0;
-  background: #fff;
-  border-radius: 20px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  padding: 40px 0;
   font-size: 1.2rem;
-  font-weight: bold;
-}
-
-.nav-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: black;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  font-size: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   z-index: 10;
-  transition: background 0.3s;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .nav-btn:hover {
   background: #d63031;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.nav-btn:active {
+  transform: translateY(-50%) scale(0.95);
 }
 
 .prev-btn {
-  left: -20px;
+  left: 0;
 }
 
 .next-btn {
-  right: -20px;
+  right: 0;
+}
+
+/* Hide buttons jika tidak diperlukan */
+.nav-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.nav-btn:disabled:hover {
+  background: #000;
+  transform: translateY(-50%);
+}
+
+/* ===========================
+   CARD CONTENT STYLES
+   =========================== */
+
+/* Icon/Image wrapper */
+.custom-block-icon-wrap {
+  flex-shrink: 0;
+}
+
+.custom-block-image-wrap {
+  width: 120px;
+  height: 120px;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  display: block;
+}
+
+.custom-block-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Play button */
+.custom-block-image-wrap .btn {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Subscribe button */
+.custom-block-icon-wrap .btn.mt-2 {
+  width: 100%;
+  font-size: 0.85rem;
+  padding: 6px 12px;
+}
+
+/* Info section */
+.custom-block-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.custom-block-top small {
+  font-size: 0.75rem;
+}
+
+.custom-block-top .badge {
+  padding: 3px 8px;
+  font-size: 0.7rem;
+}
+
+.custom-block-info h5 {
+  font-size: 1.1rem;
+  line-height: 1.3;
+}
+
+.profile-block-image {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+}
+
+.profile-block p {
+  font-size: 0.85rem;
+}
+
+.custom-block-bottom {
+  font-size: 0.8rem;
+}
+
+/* ===========================
+   RESPONSIVE
+   =========================== */
+
+/* Tablet */
+@media (max-width: 991px) {
+  .podcast-wrapper {
+    padding: 0 40px;
+  }
+
+  .custom-block {
+    flex: 0 0 calc(50% - 10px);
+    min-width: calc(50% - 10px);
+  }
+}
+
+/* Mobile - 1 card per view */
+@media (max-width: 768px) {
+  .podcast-wrapper {
+    padding: 0 35px;
+  }
+
+  .custom-block {
+    flex: 0 0 100%;
+    min-width: 100%;
+  }
+
+  .nav-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+  }
+
+  .custom-block-image-wrap {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+  .podcast-wrapper {
+    padding: 0 30px;
+  }
+
+  .custom-block {
+    padding: 15px;
+  }
+
+  .custom-block.d-flex {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .custom-block-icon-wrap {
+    margin: 0 auto;
+  }
+
+  .custom-block-image-wrap {
+    margin: 0 auto;
+  }
+
+  .nav-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Overlay latar belakang popup */
+.popup-card {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+/* Isi konten popup */
+.popup-content {
+  display: flex;
+  align-items: flex-start;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  width: 100%;
+  max-width: 850px;
+  animation: fadeIn 0.3s ease-in-out;
+  position: relative;
+  flex-direction: row;
+}
+
+/* Gambar kiri */
+.popup-image {
+  width: 45%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Bagian teks kanan */
+.popup-text {
+  flex: 1;
+  padding: 20px 25px;
+  color: #222;
+  line-height: 1.6;
+  font-size: 14.5px;
+  font-family: "Poppins", sans-serif;
+  overflow-y: auto;
+}
+
+/* Judul promo */
+.popup-text h3 {
+  font-weight: 700;
+  font-size: 20px;
+  color: #d10606;
+  margin-bottom: 10px;
+}
+
+/* Tombol tutup */
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: #d10606;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s ease;
+}
+
+.close-btn:hover {
+  background: #b10505;
+}
+
+/* Animasi muncul popup */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Responsif untuk HP */
+@media (max-width: 600px) {
+  .popup-content {
+    flex-direction: column;
+    width: 90%;
+  }
+
+  .popup-image {
+    width: 100%;
+    height: auto;
+  }
+
+  .popup-text {
+    padding: 15px;
+  }
 }
  
+@media (max-width: 768px) {
+  .hero-section img {
+    width: 100%;
+    height: auto;
+  }
+
+  .latest-podcast-section .card {
+    width: 90%;
+    margin: 10px auto;
+  }
+
+  .navbar {
+    flex-wrap: wrap;
+  }
+}
+
