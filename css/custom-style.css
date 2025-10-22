@@ -1,15 +1,15 @@
 /* ===========================
    TOP HEADER & LANGUAGE SWITCHER
    =========================== */
-
 .top-header {
-  background-color: #d10606;
+  background-color: var(--primary-color); /* Menggunakan variabel untuk konsistensi */
   height: 50px;
   width: 100%;
   position: relative;
   padding: 6px 0;
   z-index: 1000;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box; /* Tambahan untuk konsistensi layout */
 }
 
 .language-switcher {
@@ -25,7 +25,7 @@
 .language-switcher button {
   background: transparent;
   border: none;
-  color: #fff;
+  color: var(--white-color); /* Menggunakan variabel */
   font-weight: bold;
   font-size: 14px;
   cursor: pointer;
@@ -33,30 +33,31 @@
   transition: all 0.3s ease;
   padding: 5px 10px;
   border-radius: 4px;
+  outline: none; /* Tambahan untuk konsistensi */
 }
 
 .language-switcher button:hover {
-  color: #ff960d;
+  color: var(--secondary-color); /* Menggunakan variabel */
   background: rgba(255, 255, 255, 0.1);
 }
 
 .language-switcher button.active {
-  color: #ff960d;
+  color: var(--secondary-color); /* Menggunakan variabel */
   background: rgba(255, 255, 255, 0.15);
 }
 
 /* ===========================
    NAVBAR
    =========================== */
-
 .navbar {
-  background-color: #ffffff !important;
+  background-color: var(--white-color); /* Hapus !important, gunakan variabel */
   position: sticky;
   top: 0;
   z-index: 999;
   margin-top: 0;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
+  box-sizing: border-box; /* Tambahan */
 }
 
 .navbar.scrolled {
@@ -64,7 +65,7 @@
 }
 
 .navbar .nav-link {
-  color: #000000;
+  color: var(--dark-color); /* Menggunakan variabel */
   font-weight: 500;
   padding: 8px 15px;
   transition: all 0.3s ease;
@@ -79,12 +80,13 @@
   transform: translateX(-50%);
   width: 0;
   height: 2px;
-  background-color: #d10606;
+  background-color: var(--primary-color); /* Menggunakan variabel dengan opacity jika perlu */
   transition: width 0.3s ease;
+  will-change: width; /* Optimasi performa */
 }
 
 .navbar .nav-link:hover {
-  color: #d10606;
+  color: var(--primary-color); /* Menggunakan variabel */
 }
 
 .navbar .nav-link:hover::after,
@@ -95,14 +97,13 @@
 /* ===========================
    SCROLL TO TOP BUTTON
    =========================== */
-
 #scrollToTopBtn {
   position: fixed;
   bottom: 30px;
   right: 30px;
   z-index: 998;
-  background-color: #d10606;
-  color: white;
+  background-color: var(--primary-color); /* Menggunakan variabel */
+  color: var(--white-color); /* Menggunakan variabel */
   border: none;
   outline: none;
   width: 45px;
@@ -113,6 +114,7 @@
   box-shadow: 0 4px 15px rgba(209, 6, 6, 0.4);
   display: none;
   transition: all 0.3s ease;
+  box-sizing: border-box; /* Tambahan */
 }
 
 #scrollToTopBtn.show {
@@ -123,7 +125,7 @@
 }
 
 #scrollToTopBtn:hover {
-  background-color: #ff960d;
+  background-color: var(--secondary-color); /* Menggunakan variabel */
   transform: translateY(-3px) scale(1.05);
   box-shadow: 0 6px 20px rgba(255, 150, 13, 0.5);
 }
@@ -541,146 +543,8 @@
 }
 
 /* ===========================
-   RESPONSIVE DESIGN
+   RESPONSIVE DESIGN (Kelanjutan)
    =========================== */
-
-/* Tablet */
-@media (max-width: 991px) {
-  .language-switcher {
-    right: 20px;
-    padding-right: 20px;
-  }
-
-  .podcast-wrapper {
-    padding: 0 50px;
-  }
-
-  .custom-block {
-    flex: 0 0 calc(50% - 10px);
-    min-width: calc(50% - 10px);
-  }
-
-  .custom-block-image-wrap {
-    width: 100px;
-    height: 100px;
-  }
-
-  .nav-btn {
-    width: 40px;
-    height: 40px;
-    font-size: 1.1rem;
-  }
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-  .top-header {
-    height: 45px;
-    padding: 4px 0;
-  }
-
-  .language-switcher {
-    top: 12px;
-    right: 15px;
-    padding-right: 15px;
-  }
-
-  .language-switcher button {
-    font-size: 12px;
-    margin-left: 5px;
-    padding: 4px 8px;
-  }
-
-  .navbar {
-    flex-wrap: wrap;
-  }
-
-  .navbar .nav-link {
-    padding: 10px 12px;
-  }
-
-  #scrollToTopBtn {
-    width: 40px;
-    height: 40px;
-    font-size: 18px;
-    bottom: 20px;
-    right: 20px;
-  }
-
-  .latest-podcast-section {
-    padding: 40px 0;
-  }
-
-  .latest-podcast-section .section-title {
-    font-size: 1.1rem;
-    padding: 6px 20px;
-  }
-
-  .podcast-wrapper {
-    padding: 0 45px;
-  }
-
-  .custom-block {
-    flex: 0 0 100%;
-    min-width: 100%;
-    padding: 15px;
-  }
-
-  .custom-block:hover {
-    transform: translateY(-5px);
-  }
-
-  .custom-block-info h5 {
-    font-size: 1rem;
-  }
-
-  .custom-block-top {
-    gap: 8px;
-  }
-
-  .custom-block-bottom {
-    gap: 8px;
-    font-size: 0.75rem;
-  }
-
-  .nav-btn {
-    width: 38px;
-    height: 38px;
-    font-size: 1rem;
-  }
-
-  .hero-section img {
-    width: 100%;
-    height: auto;
-  }
-
-  .latest-podcast-section .card {
-    width: 90%;
-    margin: 10px auto;
-  }
-
-  /* Popup responsive */
-  .popup-content {
-    flex-direction: column;
-    width: 90%;
-    max-width: 500px;
-  }
-
-  .popup-image {
-    width: 100%;
-    height: auto;
-    min-height: 250px;
-  }
-
-  .popup-text {
-    padding: 20px;
-    max-height: 400px;
-  }
-
-  .popup-text h3 {
-    font-size: 18px;
-  }
-}
 
 /* Small Mobile */
 @media (max-width: 480px) {
@@ -764,7 +628,7 @@
   }
 }
 
-/* Landscape orientation */
+/* Landscape Orientation */
 @media (max-height: 600px) and (orientation: landscape) {
   .latest-podcast-section {
     padding: 30px 0;
@@ -784,20 +648,87 @@
   }
 }
 
+/* ===========================
+   POPUP PROMO CARD (Update dari duplikasi)
+   =========================== */
 .popup-card {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.5); /* Menggunakan alpha untuk konsistensi */
   display: none;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 1000; /* Diperbaiki dari 9999 untuk menghindari konflik */
   opacity: 0;
   transition: opacity 0.3s ease;
+  box-sizing: border-box; /* Tambahan */
 }
+
 .popup-card.show {
   opacity: 1;
 }
+
+/* ===========================
+   SOCIAL ICON LINK
+   =========================== */
+.social-icon-link.bi-pinterest {
+  visibility: hidden; /* Baik untuk menyembunyikan, tapi pastikan tidak mempengaruhi aksesibilitas */
+}
+
+/* ===========================
+   PARTNERSHIP SECTION
+   =========================== */
+.partner-card {
+  background: var(--white-color); /* Menggunakan variabel */
+  border-radius: 25px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  padding: 25px;
+  text-align: center;
+  width: 220px; /* Lebih besar dari sebelumnya */
+  margin: 0 20px; /* Kurangi jarak antar card */
+  transition: all 0.3s ease;
+  box-sizing: border-box; /* Tambahan */
+  cursor: pointer; /* Tambahan jika interaktif */
+}
+
+.partner-card img {
+  width: 100px; /* Sedikit diperbesar */
+  height: auto;
+  margin-bottom: 12px;
+  object-fit: contain; /* Pastikan gambar fit */
+}
+
+.partner-card p {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--dark-color); /* Menggunakan variabel */
+}
+
+.partner-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+  will-change: transform, box-shadow; /* Optimasi performa */
+}
+
+/* Pengaturan layout carousel (jika pakai Owl Carousel) */
+.owl-carousel .owl-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Responsif untuk Partnership */
+@media (max-width: 768px) {
+  .partner-card {
+    width: 180px;
+    margin: 0 10px;
+  }
+
+  .partner-card img {
+    width: 80px;
+  }
+}
+

@@ -1,15 +1,10 @@
-/*
-
-TemplateMo 584 Pod Talk
-
-https://templatemo.com/tm-584-pod-talk
-
-*/
-
-
+/*---------------------------------------
+  IMPORT FONTS (Tambahan untuk memuat font)
+-----------------------------------------*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Sono:wght@400;600;700&display=swap');
 
 /*---------------------------------------
-  CUSTOM PROPERTIES ( VARIABLES )             
+  CUSTOM PROPERTIES (VARIABLES)             
 -----------------------------------------*/
 :root {
   --white-color:                  #ffffff;
@@ -46,31 +41,28 @@ https://templatemo.com/tm-584-pod-talk
   --font-weight-bold:             700;
 }
 
-body {
-  background-color: var(--white-color);
-  font-family: var(--body-font-family); 
+/*---------------------------------------
+  GLOBAL STYLES
+-----------------------------------------*/
+* {
+  box-sizing: border-box; /* Tambahan untuk konsistensi layout */
 }
 
+body {
+  background-color: var(--white-color);
+  font-family: var(--body-font-family);
+  margin: 0; /* Pastikan tidak ada margin default */
+}
 
 /*---------------------------------------
   TYPOGRAPHY               
 -----------------------------------------*/
-
-h2,
-h3,
-h4,
-h5,
-h6 {
+h2, h3, h4, h5, h6 {
   color: var(--dark-color);
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--title-font-family); 
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--title-font-family);
   font-weight: var(--font-weight-semibold);
 }
 
@@ -104,6 +96,7 @@ p {
   color: var(--p-color);
   font-size: var(--p-font-size);
   font-weight: var(--font-weight-light);
+  margin: 0 0 1rem 0; /* Tambahan margin default */
 }
 
 ul li {
@@ -112,8 +105,7 @@ ul li {
   font-weight: var(--font-weight-light);
 }
 
-a, 
-button {
+a, button {
   touch-action: manipulation;
   transition: all 0.3s;
 }
@@ -128,8 +120,7 @@ a:hover {
   color: var(--link-hover-color);
 }
 
-b,
-strong {
+b, strong {
   font-weight: var(--font-weight-bold);
 }
 
@@ -137,7 +128,6 @@ strong {
   background-color: var(--primary-color);
   color: var(--white-color);
 }
-
 
 /*---------------------------------------
   SECTION               
@@ -197,14 +187,12 @@ main {
   position: relative;
 }
 
-
 /*---------------------------------------
   CUSTOM ICON COLOR               
 -----------------------------------------*/
 .custom-icon {
   color: var(--primary-color);
 }
-
 
 /*---------------------------------------
   CUSTOM BUTTON               
@@ -220,6 +208,7 @@ main {
   line-height: normal;
   transition: all 0.3s;
   padding: 10px 20px;
+  cursor: pointer; /* Tambahan untuk interaktivitas */
 }
 
 .custom-btn:hover {
@@ -244,12 +233,11 @@ main {
   color: var(--white-color);
 }
 
-
 /*---------------------------------------
   SITE HEADER              
 -----------------------------------------*/
 .site-header {
-  background-image: url('../images/bg2.jpg'), linear-gradient(#d10606, #FFFFFF);;
+  background-image: url('../images/bg2.jpg'), linear-gradient(#d10606, #FFFFFF);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -260,7 +248,6 @@ main {
 .site-header h2 {
   color: var(--white-color);
 }
-
 
 /*---------------------------------------
   NAVIGATION              
@@ -305,7 +292,7 @@ main {
 .navbar-nav .nav-link {
   display: inline-block;
   color: var(--section-bg-color);
-  font-family: var(--title-font-family); 
+  font-family: var(--title-font-family);
   font-size: var(--menu-font-size);
   font-weight: var(--font-weight-medium);
   text-transform: uppercase;
@@ -325,14 +312,14 @@ main {
   color: var(--secondary-color);
 }
 
-.navbar-nav .nav-link.active, 
+.navbar-nav .nav-link.active,
 .navbar-nav .nav-link:hover {
   color: var(--secondary-color);
 }
 
 .navbar .dropdown-menu {
   background: var(--secondary-color);
-  box-shadow: 0 1rem 3rem rgba(0,0,0,.175);
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175);
   border: 0;
   display: inherit;
   opacity: 0;
@@ -357,8 +344,8 @@ main {
 
 .navbar .dropdown-item {
   display: inline-block;
-  color: var(--p-bg-color);
-  font-family: var(--title-font-family); 
+  color: var(--p-color); /* Diperbaiki dari --p-bg-color yang tidak ada */
+  font-family: var(--title-font-family);
   font-size: var(--menu-font-size);
   font-weight: var(--font-weight-medium);
   text-transform: uppercase;
@@ -366,9 +353,9 @@ main {
   position: relative;
 }
 
-.navbar .dropdown-item.active, 
+.navbar .dropdown-item.active,
 .navbar .dropdown-item:active,
-.navbar .dropdown-item:focus, 
+.navbar .dropdown-item:focus,
 .navbar .dropdown-item:hover {
   background: transparent;
   color: var(--secondary-color);
@@ -406,25 +393,26 @@ main {
 }
 
 .navbar .custom-border-btn:hover {
-  background: var(--white-color);
+  background: var(--secondary-color);
   color: #333;
 }
 
+/* Tombol toggle */
 .navbar-toggler {
-  color: #fcb42f; /* warna ikon */
-  border: 2px solid #fcb42f; /* garis tombol */
-  border-radius: 8px; /* sudut membulat */
+  color: #fcb42f;
+  border: 2px solid #fcb42f;
+  border-radius: 8px;
   padding: 6px 8px;
   cursor: pointer;
   margin: 0;
   width: 40px;
   height: 40px;
   outline: none;
+  z-index: 1001;
   transition: all 0.3s ease;
   background-color: transparent;
 }
 
-/* Hover efek elegan */
 .navbar-toggler:hover {
   background-color: #fcb42f;
   color: #fff;
@@ -432,59 +420,32 @@ main {
   box-shadow: 0 0 8px rgba(252, 180, 47, 0.5);
 }
 
-/* Fokus (saat ditekan di mobile) */
 .navbar-toggler:focus {
-  box-shadow: 0 0 0 3px rgba(252, 180, 47, 0.3);
-  outline: none;
-}
-
-
-.navbar-toggler:focus {
-  outline: none;
   box-shadow: none;
+  outline: none;
 }
 
-.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
-  background: transparent;
-}
-
-.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:before,
-.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:after {
-  transition: top 300ms 50ms ease, -webkit-transform 300ms 350ms ease;
-  transition: top 300ms 50ms ease, transform 300ms 350ms ease;
-  transition: top 300ms 50ms ease, transform 300ms 350ms ease, -webkit-transform 300ms 350ms ease;
-  top: 0;
-}
-
-.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:before {
-  transform: rotate(45deg);
-}
-
-.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:after {
-  transform: rotate(-45deg);
-}
-
+/* GARIS UTAMA */
 .navbar-toggler .navbar-toggler-icon {
-  background: var(--white-color);
-  transition: background 10ms 300ms ease;
-  display: block;
-  width: 30px;
-  height: 2px;
   position: relative;
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: var(--secondary-color);
+  transition: all 0.3s ease;
+  margin: 0 auto;
 }
 
-.navbar-toggler .navbar-toggler-icon:before,
-.navbar-toggler .navbar-toggler-icon:after {
-  transition: top 300ms 350ms ease, -webkit-transform 300ms 50ms ease;
-  transition: top 300ms 350ms ease, transform 300ms 50ms ease;
-  transition: top 300ms 350ms ease, transform 300ms 50ms ease, -webkit-transform 300ms 50ms ease;
+/* GARIS ATAS & BAWAH */
+.navbar-toggler .navbar-toggler-icon::before,
+.navbar-toggler .navbar-toggler-icon::after {
+  content: "";
   position: absolute;
-  right: 0;
   left: 0;
-  background: var(--white-color);
-  width: 30px;
+  width: 24px;
   height: 2px;
-  content: '';
+  background-color: var(--secondary-color);
+  transition: all 0.3s ease;
 }
 
 .navbar-toggler .navbar-toggler-icon::before {
@@ -495,9 +456,23 @@ main {
   top: 8px;
 }
 
+/* ANIMASI MENJADI "X" SAAT DIBUKA */
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
+  background-color: transparent;
+}
+
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::before {
+  transform: rotate(45deg);
+  top: 0;
+}
+
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::after {
+  transform: rotate(-45deg);
+  top: 0;
+}
 
 /*---------------------------------------
-  CAROUSEL        
+  CAROUSEL (OWL CAROUSEL)        
 -----------------------------------------*/
 .hero-section {
   background-image: url('../images/bg2.jpg');
@@ -510,11 +485,6 @@ main {
   z-index: 0;
   overflow: hidden;
 }
-
-
-/* ===========================
-   OWL CAROUSEL - IMPROVED
-   =========================== */
 
 /* Base Carousel Container */
 .owl-carousel {
@@ -569,10 +539,7 @@ main {
   z-index: 5;
 }
 
-/* ===========================
-   IMAGE STYLES
-   =========================== */
-
+/* Image Styles */
 .owl-carousel-image {
   display: block;
   width: 100%;
@@ -595,10 +562,7 @@ main {
   transform: scale(1.05);
 }
 
-/* ===========================
-   INFO WRAPPER & BADGE
-   =========================== */
-
+/* Info Wrapper & Badge */
 .owl-carousel-info-wrap {
   position: relative;
   overflow: hidden;
@@ -611,7 +575,7 @@ main {
   background-color: var(--section-bg-color);
   box-shadow: 0 1rem 3rem #fcb42f;
   position: absolute;
-  bottom: 30px;
+  bottom: 20px; 
   right: 0;
   left: 0;
   padding: 10px;
@@ -627,10 +591,12 @@ main {
 }
 
 .owl-item.center .owl-carousel-info h4 {
-  font-size: 1.5rem;
+  font-size: 1.5rem
 }
 
-/* Badge */
+/* ===========================
+   BADGE
+   =========================== */
 .badge {
   background-color: var(--custom-btn-bg-color);
   font-family: var(--title-font-family);
@@ -640,6 +606,9 @@ main {
   display: inline-block;
 }
 
+/* ===========================
+   CAROUSEL INFO (Gabung dari duplikasi)
+   =========================== */
 .owl-carousel-info {
   background-color: var(--section-bg-color);
   box-shadow: 0 1rem 3rem #fcb42f;
@@ -654,7 +623,6 @@ main {
 /* ===========================
    SOCIAL ICONS
    =========================== */
-
 .owl-carousel-info-wrap .social-share {
   position: absolute;
   right: 15px;
@@ -689,11 +657,12 @@ main {
   width: 40px;
   height: 40px;
   background: #fcb42f;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px); /* Fallback: gunakan dengan hati-hati di browser lama */
   border-radius: 50%;
   color: #fff;
   transition: all 0.3s ease;
   margin-left: auto;
+  cursor: pointer; /* Tambahan untuk interaktivitas */
 }
 
 .owl-carousel-info-wrap .social-icon-link:hover {
@@ -704,7 +673,6 @@ main {
 /* ===========================
    DOTS NAVIGATION
    =========================== */
-
 .owl-carousel .owl-dots {
   background-color: var(--white-color);
   box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175);
@@ -830,6 +798,7 @@ main {
     font-size: 0.95rem;
   }
 }
+
 
 /*---------------------------------------
   CUSTOM BLOCK              
@@ -1026,10 +995,12 @@ main {
 
 
 /*---------------------------------------
-  PROIFLE BLOCK               
+  PROFILE BLOCK               
 -----------------------------------------*/
 .profile-block {
   margin-top: 10px;
+  display: flex; 
+  align-items: center; 
 }
 
 .profile-block-image {
@@ -1079,7 +1050,6 @@ main {
   padding: 30px;
 }
 
-
 /*---------------------------------------
   PAGINATION               
 -----------------------------------------*/
@@ -1096,6 +1066,7 @@ main {
   font-family: var(--title-font-family);
   margin: 0 5px;
   padding: 10px 20px;
+  transition: all 0.3s; /* Tambahan untuk smoothness */
 }
 
 .page-link:hover,
@@ -1109,11 +1080,11 @@ main {
   margin-right: 10px;
 }
 
-.active>.page-link, .page-link.active {
+.active > .page-link,
+.page-link.active {
   background-color: var(--secondary-color);
   border-color: var(--secondary-color);
 }
-
 
 /*---------------------------------------
   CONTACT               
@@ -1127,6 +1098,7 @@ main {
   color: var(--p-color);
   border-bottom: 1px solid;
   padding-bottom: 3px;
+  transition: color 0.3s; /* Tambahan */
 }
 
 .contact-info p a:hover {
@@ -1137,11 +1109,11 @@ main {
   border-radius: var(--border-radius-medium);
 }
 
-.contact-form .form-floating>textarea {
+.contact-form .form-floating > textarea {
   border-radius: var(--border-radius-medium);
   height: 150px;
+  box-sizing: border-box; /* Tambahan untuk konsistensi */
 }
-
 
 /*---------------------------------------
   SUBSCRIBE FORM               
@@ -1153,6 +1125,7 @@ main {
   position: relative;
   top: 12px;
   padding: 35px;
+  z-index: 1; /* Tambahan untuk menghindari overlap jika diperlukan */
 }
 
 .subscribe-form-wrap h6 {
@@ -1170,12 +1143,13 @@ main {
   border: 0;
   border-radius: 10px 10px 0 0;
   margin-bottom: 0;
+  box-sizing: border-box; /* Tambahan */
 }
 
 .subscribe-form #submit {
   border-radius: 0 0 10px 10px;
+  cursor: pointer; /* Tambahan */
 }
-
 
 /*---------------------------------------
   CUSTOM FORM               
@@ -1190,9 +1164,10 @@ main {
   padding-bottom: 10px;
   padding-left: 20px;
   outline: none;
+  box-sizing: border-box; /* Tambahan */
 }
 
-.form-floating>label {
+.form-floating > label {
   padding-left: 20px;
 }
 
@@ -1206,6 +1181,7 @@ main {
   font-weight: var(--font-weight-semibold);
   transition: all 0.3s;
   margin-bottom: 0;
+  cursor: pointer; /* Tambahan */
 }
 
 .custom-form button[type="submit"]:hover,
@@ -1214,13 +1190,13 @@ main {
   border-color: transparent;
 }
 
-
 /*---------------------------------------
   SEARCH FORM               
 -----------------------------------------*/
 .search-form .form-control {
   border: 0;
   margin-bottom: 0;
+  box-sizing: border-box; /* Tambahan */
 }
 
 .search-form button[type="submit"] {
@@ -1229,12 +1205,13 @@ main {
   max-width: 50px;
   height: 100%;
   padding-left: 15px;
+  transition: background 0.3s; /* Tambahan */
+  cursor: pointer; /* Tambahan */
 }
 
 .search-form button[type="submit"]:hover {
   background: var(--primary-color);
 }
-
 
 /*---------------------------------------
   SITE FOOTER              
@@ -1268,6 +1245,7 @@ main {
   color: var(--white-color);
   border-bottom: 1px solid;
   padding-bottom: 3px;
+  transition: color 0.3s; /* Tambahan */
 }
 
 .site-footer p a:hover {
@@ -1296,9 +1274,9 @@ main {
 .site-footer-link {
   color: var(--white-color);
   font-size: var(--p-font-size);
-  line-height: inherit;
+  line-height: 1.5; /* Diperbaiki dari inherit untuk konsistensi */
+  transition: color 0.3s; /* Tambahan */
 }
-
 
 /*---------------------------------------
   SOCIAL ICON               
@@ -1326,6 +1304,7 @@ main {
   height: 40px;
   line-height: 40px;
   transition: background 0.2s, color 0.2s;
+  cursor: pointer; /* Tambahan */
 }
 
 .social-icon-link:hover {
@@ -1333,17 +1312,15 @@ main {
   color: var(--white-color);
 }
 
-
 /*---------------------------------------
   RESPONSIVE STYLES               
 -----------------------------------------*/
 @media screen and (min-width: 2160px) {
-	.hero-section {
-	  background-size: 100% 90%;
-	  /* T o o p l a t e . c o m   C u s t o m i z e d */
-	}
+  .hero-section {
+    background-size: 100% 90%;
+    /* T o o p l a t e . c o m   C u s t o m i z e d */
+  }
 }
-
 
 @media screen and (min-width: 1600px) {
   .site-footer {
@@ -1352,10 +1329,10 @@ main {
 }
 
 @media screen and (max-width: 1240px) {
-	.hero-section {
-	  background-size: 116%;
-	  /* T o o p l a t e . c o m   C u s t o m i z e d */
-	}
+  .hero-section {
+    background-size: 116%;
+    /* T o o p l a t e . c o m   C u s t o m i z e d */
+  }
 }
 
 @media screen and (max-width: 991px) {
@@ -1382,11 +1359,11 @@ main {
   h6 {
     font-size: 18px;
   }
-  
+
   .hero-section {
-	  background-size: 160% 66%; 
-	  /* T o o p l a t e . c o m   C u s t o m i z e d */
-	}
+    background-size: 160% 66%;
+    /* T o o p l a t e . c o m   C u s t o m i z e d */
+  }
 
   .section-padding {
     padding-top: 50px;
@@ -1422,7 +1399,7 @@ main {
   }
 
   .nav-tabs .nav-link {
-    font-size: var(--copyright-font-size);
+    font-size: var(--menu-font-size); /* Diperbaiki dari --copyright-font-size yang tidak ada */
     padding: 10px;
   }
 
@@ -1438,10 +1415,10 @@ main {
 }
 
 @media screen and (max-width: 540px) {
-	.hero-section {
-  		background-size: 180% 65%;
-		/* T o o p l a t e . c o m   C u s t o m i z e d */
-	}
+  .hero-section {
+    background-size: 180% 65%;
+    /* T o o p l a t e . c o m   C u s t o m i z e d */
+  }
 
   .custom-block .custom-block-top {
     flex-direction: column;
@@ -1479,10 +1456,6 @@ main {
   .search-form {
     max-width: 200px;
   }
-
-
-
-
-
 }
+
 

@@ -20,6 +20,7 @@ let nextBtn = null;
 document.addEventListener('DOMContentLoaded', function() {
   initSlider();
   initPopup();
+  initPartnershipCarousel();
 });
 
 /**
@@ -34,8 +35,12 @@ function initSlider() {
   
   updateButtons();
   
-  // Event listeners untuk resize
-  window.addEventListener('resize', handleResize);
+  // Event listeners untuk resize (dengan debounce untuk performa)
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(handleResize, 250);
+  });
 }
 
 /**
@@ -88,6 +93,7 @@ function updateSlider() {
   const offset = currentIndex * (cardWidth + gap);
   
   container.style.transform = `translateX(-${offset}px)`;
+  container.style.transition = 'transform 0.3s ease-in-out';
   
   updateButtons();
 }
@@ -141,9 +147,10 @@ function goToSlide(index) {
 /**
  * Auto play slider (optional)
  * @param {number} interval - Interval dalam ms (default 5000)
+ * @returns {function} - Function untuk stop autoplay
  */
 function autoPlay(interval = 5000) {
-  setInterval(() => {
+  const autoplayInterval = setInterval(() => {
     const cardsPerView = getCardsPerView();
     const totalCards = getTotalCards();
     const maxIndex = totalCards - cardsPerView;
@@ -156,6 +163,9 @@ function autoPlay(interval = 5000) {
     
     updateSlider();
   }, interval);
+
+  // Return function untuk stop autoplay
+  return () => clearInterval(autoplayInterval);
 }
 
 // ===========================
@@ -169,87 +179,7 @@ function initPopup() {
   const showButtons = document.querySelectorAll(".social-icon-link");
 
   showButtons.forEach(btn => {
-    btn.addEventListener("click", async e => {
-      e.preventDefault();
-      const popupName = btn.dataset.popup;
-      
-      if (!popupName) {
-        console.warn("data-popup attribute tidak ditemukan");
-        return;
-      }
-
-      try {
-        const res = await fetch(`${popupName}.html`);
-        if (!res.ok) throw new Error(`File ${popupName}.html tidak ditemukan`);
-        const html = await res.text();
-
-        // Buat wrapper popup
-        const wrapper = document.createElement("div");
-        wrapper.classList.add("popup-card");
-        wrapper.innerHTML = html;
-        document.body.appendChild(wrapper);
-
-        // Tampilkan popup dengan delay untuk animasi
-        setTimeout(() => {
-          wrapper.style.display = "flex";
-        }, 10);
-
-        // Tombol tutup
-        const closeBtn = wrapper.querySelector(".close-btn");
-        if (closeBtn) {
-          closeBtn.addEventListener("click", () => closePopup(wrapper));
-        }
-
-        // Klik di luar popup
-        wrapper.addEventListener("click", e => {
-          if (e.target === wrapper) closePopup(wrapper);
-        });
-
-        // ESC key untuk tutup
-        const escHandler = (e) => {
-          if (e.key === 'Escape') {
-            closePopup(wrapper);
-            document.removeEventListener('keydown', escHandler);
-          }
-        };
-        document.addEventListener('keydown', escHandler);
-
-      } catch (err) {
-        console.error("Gagal memuat popup:", err);
-        alert(`Tidak dapat memuat popup: ${popupName}.html`);
-      }
-    });
-  });
-}
-
-/**
- * Close popup dengan animasi
- * @param {HTMLElement} wrapper - Popup wrapper element
- */
-function closePopup(wrapper) {
-  wrapper.style.opacity = '0';
-  setTimeout(() => {
-    wrapper.remove();
-  }, 300);
-}
-
-// ===========================
-// EXPORT FUNCTIONS
-// ===========================
-
-// Export ke window agar bisa dipanggil dari HTML
-window.slideCards = slideCards;
-window.goToSlide = goToSlide;
-window.autoPlay = autoPlay;
-
-// Tambahkan ini di akhir file JS Anda untuk memanggil fungsi saat halaman siap
-document.addEventListener('DOMContentLoaded', initPopup);
-
-function initPopup() {
-  const showButtons = document.querySelectorAll(".social-icon-link");
-
-  showButtons.forEach(btn => {
-    btn.addEventListener("click", async e => {
+    btn.addEventListener("click", async (e) => {
       e.preventDefault();
       const popupName = btn.dataset.popup;
       
@@ -270,9 +200,9 @@ function initPopup() {
         document.body.appendChild(wrapper);
 
         // Tampilkan popup dengan animasi
-        setTimeout(() => {
-          wrapper.classList.add("show"); // Gunakan class untuk animasi
-        }, 10);
+        requestAnimationFrame(() => {
+          wrapper.classList.add("show");
+        });
 
         // Tombol tutup
         const closeBtn = wrapper.querySelector(".close-btn");
@@ -281,7 +211,7 @@ function initPopup() {
         }
 
         // Klik di luar popup
-        wrapper.addEventListener("click", e => {
+        wrapper.addEventListener("click", (e) => {
           if (e.target === wrapper) closePopup(wrapper);
         });
 
@@ -296,7 +226,7 @@ function initPopup() {
 
       } catch (err) {
         console.error("Gagal memuat popup:", err);
-        // Hapus alert, ganti dengan log (atau tampilkan pesan di UI jika perlu)
+        // Tampilkan pesan error yang lebih user-friendly jika diperlukan
       }
     });
   });
@@ -307,8 +237,57 @@ function initPopup() {
  * @param {HTMLElement} wrapper - Popup wrapper element
  */
 function closePopup(wrapper) {
+  if (!wrapper) return;
+  
   wrapper.classList.remove("show");
   setTimeout(() => {
     wrapper.remove();
   }, 300);
 }
+
+// ===========================
+// PARTNERSHIP CAROUSEL
+// ===========================
+
+/**
+ * Initialize Partnership Carousel (Owl Carousel)
+ */
+function initPartnershipCarousel() {
+  // Cek apakah jQuery dan Owl Carousel sudah loaded
+  if (typeof jQuery === 'undefined' || typeof jQuery.fn.owlCarousel === 'undefined') {
+    console.warn('jQuery atau Owl Carousel belum dimuat');
+    return;
+  }
+
+  const carouselElement = $('.partnership-carousel');
+  
+  if (carouselElement.length === 0) {
+    return;
+  }
+
+  carouselElement.owlCarousel({
+    loop: true,
+    margin: 20,
+    autoplay: true,
+    autoplayTimeout: 3000,
+    autoplayHoverPause: true,
+    dots: true,
+    nav: false,
+    responsive: {
+      0: { items: 1 },
+      576: { items: 2 },
+      768: { items: 3 },
+      992: { items: 4 }
+    }
+  });
+}
+
+// ===========================
+// EXPORT FUNCTIONS
+// ===========================
+
+// Export ke window agar bisa dipanggil dari HTML
+window.slideCards = slideCards;
+window.goToSlide = goToSlide;
+window.autoPlay = autoPlay;
+window.closePopup = closePopup;
