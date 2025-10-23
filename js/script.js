@@ -164,7 +164,7 @@ function autoPlay(interval = 5000) {
     updateSlider();
   }, interval);
 
-  // Return function untuk stop autoplay
+ 
   return () => clearInterval(autoplayInterval);
 }
 
@@ -173,64 +173,92 @@ function autoPlay(interval = 5000) {
 // ===========================
 
 /**
- * Initialize popup
+ * Initialize popup (berlaku untuk semua elemen yang punya data-popup)
  */
 function initPopup() {
-  const showButtons = document.querySelectorAll(".social-icon-link");
+  const triggers = document.querySelectorAll("[data-popup]");
 
-  showButtons.forEach(btn => {
-    btn.addEventListener("click", async (e) => {
+  triggers.forEach(trigger => {
+    trigger.addEventListener("click", async (e) => {
       e.preventDefault();
-      const popupName = btn.dataset.popup;
-      
-      if (!popupName) {
-        console.warn("data-popup attribute tidak ditemukan");
-        return;
-      }
+
+      const popupFile = trigger.dataset.popup; // contoh: "popup-promo"
+      const itemId = trigger.dataset.id;       // contoh: "promo1"
 
       try {
-        const res = await fetch(`${popupName}.html`);
-        if (!res.ok) throw new Error(`File ${popupName}.html tidak ditemukan`);
+        // Ambil isi popup dari file HTML
+        const res = await fetch(`${popupFile}.html`);
         const html = await res.text();
 
         // Buat wrapper popup
         const wrapper = document.createElement("div");
         wrapper.classList.add("popup-card");
         wrapper.innerHTML = html;
+
+        // Masukkan ke body
         document.body.appendChild(wrapper);
 
-        // Tampilkan popup dengan animasi
-        requestAnimationFrame(() => {
-          wrapper.classList.add("show");
-        });
+        // Tampilkan hanya konten sesuai ID
+        const items = wrapper.querySelectorAll(".popup-item");
+        items.forEach(i => i.style.display = "none");
+        const selected = wrapper.querySelector(`#${itemId}`);
+        if (selected) selected.style.display = "flex";
 
-        // Tombol tutup
+        // Tampilkan popup
+        requestAnimationFrame(() => wrapper.classList.add("show"));
+
+        // Tutup popup
         const closeBtn = wrapper.querySelector(".close-btn");
         if (closeBtn) {
           closeBtn.addEventListener("click", () => closePopup(wrapper));
         }
 
         // Klik di luar popup
-        wrapper.addEventListener("click", (e) => {
-          if (e.target === wrapper) closePopup(wrapper);
+        wrapper.addEventListener("click", (ev) => {
+          if (ev.target === wrapper) closePopup(wrapper);
         });
 
-        // ESC key untuk tutup
-        const escHandler = (e) => {
-          if (e.key === 'Escape') {
+        // Tutup pakai ESC
+        const escHandler = (ev) => {
+          if (ev.key === "Escape") {
             closePopup(wrapper);
-            document.removeEventListener('keydown', escHandler);
+            document.removeEventListener("keydown", escHandler);
           }
         };
-        document.addEventListener('keydown', escHandler);
+        document.addEventListener("keydown", escHandler);
 
       } catch (err) {
         console.error("Gagal memuat popup:", err);
-        // Tampilkan pesan error yang lebih user-friendly jika diperlukan
       }
     });
   });
 }
+
+function closePopup(wrapper) {
+  wrapper.classList.remove("show");
+  setTimeout(() => wrapper.remove(), 300);
+}
+
+document.addEventListener("DOMContentLoaded", initPopup);
+
+document.querySelectorAll('[data-popup]').forEach(trigger => {
+  trigger.addEventListener('click', function(e) {
+    e.preventDefault();
+    const popupId = this.getAttribute('data-popup');
+    const popup = document.getElementById(popupId);
+    if (popup) {
+      popup.style.display = 'block';
+    }
+  });
+});
+
+document.querySelectorAll('.close-popup').forEach(button => {
+  button.addEventListener('click', function() {
+    this.closest('.popup-card').style.display = 'none';
+  });
+});
+
+
 
 /**
  * Close popup dengan animasi

@@ -121,22 +121,7 @@ document.addEventListener("DOMContentLoaded", function () {
   updateSlide(false);
 });
 
-// Fungsi untuk menampilkan popup
-document.getElementById("openPopup").addEventListener("click", async function(e) {
-  e.preventDefault();
 
-  // Ambil isi dari popup.html
-  const response = await fetch("popup.html");
-  const html = await response.text();
-
-  // Tampilkan di container
-  document.getElementById("popupContainer").innerHTML = html;
-
-  // Tambahkan event close
-  document.querySelector(".close-popup").addEventListener("click", function() {
-    document.querySelector(".popup-overlay").remove();
-  });
-});
 
 
 
