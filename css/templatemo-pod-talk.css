@@ -559,7 +559,7 @@ main {
 .owl-carousel .owl-item.center .owl-carousel-image {
   filter: none;
   height: 400px;
-  transform: scale(1.05);
+  transform: none;
 }
 
 /* Info Wrapper & Badge */
@@ -567,7 +567,7 @@ main {
   position: relative;
   overflow: hidden;
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.05);
+  background: transparent;
   transition: all 0.3s ease;
 }
 
@@ -593,6 +593,24 @@ main {
 .owl-item.center .owl-carousel-info h4 {
   font-size: 1.5rem
 }
+
+.owl-carousel .owl-item.center .owl-carousel-info-wrap {
+  z-index: 5;
+  transition: all 0.4s ease-in-out;
+  box-shadow: 0 14px 40px #fcb42f;
+   border-radius: 28px;
+  box-shadow: 0 16px 50px rgba(252, 180, 47, 0.7);
+  transform: scale(1.0);
+}
+
+.owl-carousel-info-wrap {
+  transition: all 0.4s ease-in-out;
+  transform-origin: center center;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.4s ease-in-out;
+}
+
 
 /* ===========================
    BADGE
