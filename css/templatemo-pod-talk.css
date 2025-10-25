@@ -826,7 +826,7 @@ main {
   border-radius: var(--border-radius-medium);
   position: relative;
   overflow: hidden;
-  padding: 30px;
+  padding: 50px;
   transition: all 0.3s ease;
 }
 
@@ -992,7 +992,7 @@ main {
 
 .custom-block-overlay {
   border-color: transparent;
-  padding: 0;
+  padding: 50px;
 }
 
 .custom-block-overlay .custom-block-image {

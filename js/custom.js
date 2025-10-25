@@ -122,6 +122,17 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+function slideArticles(direction) {
+  const container = document.getElementById('articleContainer');
+  const scrollAmount = 350; // jarak geser per klik
+  if (direction === 'next') {
+    container.scrollLeft += scrollAmount;
+  } else {
+    container.scrollLeft -= scrollAmount;
+  }
+}
+
+
 
 
 
