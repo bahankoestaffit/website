@@ -1,13 +1,10 @@
 
   (function ($) {
-  
   "use strict";
-
     // MENU
     $('.navbar-collapse a').on('click',function(){
       $(".navbar-collapse").collapse('hide');
     });
-    
     // CUSTOM LINK
     $('.smoothscroll').click(function(){
       var el = $(this).attr('href');
@@ -52,6 +49,10 @@
   
   })(window.jQuery);
 
+
+/////////////////////////
+//TOMBOL KEMBALI KEATAS//
+/////////////////////////  
 document.addEventListener("DOMContentLoaded", function () {
   const scrollToTopBtn = document.getElementById("scrollToTopBtn");
 
@@ -160,6 +161,68 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+// ===========================
+// UNTUK PRODUK
+// ===========================
+document.addEventListener("DOMContentLoaded", () => {
+  const container = document.getElementById("productsContainer");
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+  const cards = container.querySelectorAll(".col-lg-3");
+  let currentIndex = 0;
+
+  function getCardsPerView() {
+    if (window.innerWidth <= 576) return 1;
+    if (window.innerWidth <= 768) return 2;
+    if (window.innerWidth <= 992) return 3;
+    return 4;
+  }
+
+  function getTotalCards() {
+    return cards.length;
+  }
+
+  function updateButtons() {
+    const cardsPerView = getCardsPerView();
+    const totalCards = getTotalCards();
+    const maxIndex = totalCards - cardsPerView;
+
+    prevBtn.disabled = currentIndex === 0;
+    nextBtn.disabled = currentIndex >= maxIndex;
+
+    if (totalCards <= cardsPerView) {
+      prevBtn.style.display = "none";
+      nextBtn.style.display = "none";
+    } else {
+      prevBtn.style.display = "flex";
+      nextBtn.style.display = "flex";
+    }
+  }
+
+  function move(direction) {
+    const cardWidth = cards[0].offsetWidth + 24; // termasuk margin/gap
+    const cardsPerView = getCardsPerView();
+    const totalCards = getTotalCards();
+    const maxIndex = totalCards - cardsPerView;
+
+    currentIndex += direction;
+    if (currentIndex < 0) currentIndex = 0;
+    if (currentIndex > maxIndex) currentIndex = maxIndex;
+
+    container.scrollTo({
+      left: cardWidth * currentIndex,
+      behavior: "smooth",
+    });
+
+    updateButtons();
+  }
+
+  prevBtn.addEventListener("click", () => move(-1));
+  nextBtn.addEventListener("click", () => move(1));
+  window.addEventListener("resize", updateButtons);
+
+  updateButtons();
+});
 
 
 

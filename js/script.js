@@ -169,12 +169,9 @@ function autoPlay(interval = 5000) {
 }
 
 // ===========================
-// POPUP FUNCTIONALITY
+// POPUP FUNCTIONALITY (Final Fix)
 // ===========================
 
-/**
- * Initialize popup (berlaku untuk semua elemen yang punya data-popup)
- */
 function initPopup() {
   const triggers = document.querySelectorAll("[data-popup]");
 
@@ -204,21 +201,21 @@ function initPopup() {
         const selected = wrapper.querySelector(`#${itemId}`);
         if (selected) selected.style.display = "flex";
 
-        // Tampilkan popup
+        // Tambahkan class "show" untuk animasi muncul
         requestAnimationFrame(() => wrapper.classList.add("show"));
 
-        // Tutup popup
+        // Tombol tutup popup
         const closeBtn = wrapper.querySelector(".close-btn");
         if (closeBtn) {
           closeBtn.addEventListener("click", () => closePopup(wrapper));
         }
 
-        // Klik di luar popup
+        // Klik di luar area konten untuk menutup
         wrapper.addEventListener("click", (ev) => {
           if (ev.target === wrapper) closePopup(wrapper);
         });
 
-        // Tutup pakai ESC
+        // Tutup popup dengan tombol ESC
         const escHandler = (ev) => {
           if (ev.key === "Escape") {
             closePopup(wrapper);
@@ -233,45 +230,18 @@ function initPopup() {
     });
   });
 }
-
+/**
+ * Tutup popup dengan animasi
+ */
 function closePopup(wrapper) {
+  if (!wrapper) return;
   wrapper.classList.remove("show");
   setTimeout(() => wrapper.remove(), 300);
 }
 
+// Jalankan setelah DOM siap
 document.addEventListener("DOMContentLoaded", initPopup);
 
-document.querySelectorAll('[data-popup]').forEach(trigger => {
-  trigger.addEventListener('click', function(e) {
-    e.preventDefault();
-    const popupId = this.getAttribute('data-popup');
-    const popup = document.getElementById(popupId);
-    if (popup) {
-      popup.style.display = 'block';
-    }
-  });
-});
-
-document.querySelectorAll('.close-popup').forEach(button => {
-  button.addEventListener('click', function() {
-    this.closest('.popup-card').style.display = 'none';
-  });
-});
-
-
-
-/**
- * Close popup dengan animasi
- * @param {HTMLElement} wrapper - Popup wrapper element
- */
-function closePopup(wrapper) {
-  if (!wrapper) return;
-  
-  wrapper.classList.remove("show");
-  setTimeout(() => {
-    wrapper.remove();
-  }, 300);
-}
 
 // ===========================
 // PARTNERSHIP CAROUSEL
@@ -322,65 +292,3 @@ window.closePopup = closePopup;
 
 
 
-// ===========================
-// UNTUK PRODUK
-// ===========================
-document.addEventListener("DOMContentLoaded", () => {
-  const container = document.getElementById("productsContainer");
-  const prevBtn = document.getElementById("prevBtn");
-  const nextBtn = document.getElementById("nextBtn");
-  const cards = container.querySelectorAll(".col-lg-3");
-  let currentIndex = 0;
-
-  function getCardsPerView() {
-    if (window.innerWidth <= 576) return 1;
-    if (window.innerWidth <= 768) return 2;
-    if (window.innerWidth <= 992) return 3;
-    return 4;
-  }
-
-  function getTotalCards() {
-    return cards.length;
-  }
-
-  function updateButtons() {
-    const cardsPerView = getCardsPerView();
-    const totalCards = getTotalCards();
-    const maxIndex = totalCards - cardsPerView;
-
-    prevBtn.disabled = currentIndex === 0;
-    nextBtn.disabled = currentIndex >= maxIndex;
-
-    if (totalCards <= cardsPerView) {
-      prevBtn.style.display = "none";
-      nextBtn.style.display = "none";
-    } else {
-      prevBtn.style.display = "flex";
-      nextBtn.style.display = "flex";
-    }
-  }
-
-  function move(direction) {
-    const cardWidth = cards[0].offsetWidth + 24; // termasuk margin/gap
-    const cardsPerView = getCardsPerView();
-    const totalCards = getTotalCards();
-    const maxIndex = totalCards - cardsPerView;
-
-    currentIndex += direction;
-    if (currentIndex < 0) currentIndex = 0;
-    if (currentIndex > maxIndex) currentIndex = maxIndex;
-
-    container.scrollTo({
-      left: cardWidth * currentIndex,
-      behavior: "smooth",
-    });
-
-    updateButtons();
-  }
-
-  prevBtn.addEventListener("click", () => move(-1));
-  nextBtn.addEventListener("click", () => move(1));
-  window.addEventListener("resize", updateButtons);
-
-  updateButtons();
-});

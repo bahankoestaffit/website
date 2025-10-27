@@ -293,7 +293,7 @@ main {
   display: inline-block;
   color: var(--section-bg-color);
   font-family: var(--title-font-family);
-  font-size: var(--menu-font-size);
+  font-size: var(--h6-font-size);
   font-weight: var(--font-weight-medium);
   text-transform: uppercase;
   letter-spacing: 0.5px;
