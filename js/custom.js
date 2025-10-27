@@ -131,6 +131,33 @@ function slideArticles(direction) {
     container.scrollLeft -= scrollAmount;
   }
 }
+document.addEventListener("DOMContentLoaded", function () {
+  const container = document.querySelector("#article-carousel .row");
+  const nextBtn = document.querySelector("#next-article");
+  const prevBtn = document.querySelector("#prev-article");
+
+  let scrollAmount = 0;
+  const scrollStep = 400; // jarak scroll per klik
+
+  function updateButtons() {
+    prevBtn.disabled = scrollAmount <= 0;
+    nextBtn.disabled = scrollAmount >= container.scrollWidth - container.clientWidth - 10;
+  }
+
+  nextBtn.addEventListener("click", function () {
+    container.scrollBy({ left: scrollStep, behavior: "smooth" });
+    scrollAmount += scrollStep;
+    updateButtons();
+  });
+
+  prevBtn.addEventListener("click", function () {
+    container.scrollBy({ left: -scrollStep, behavior: "smooth" });
+    scrollAmount -= scrollStep;
+    updateButtons();
+  });
+
+  updateButtons();
+});
 
 
 

@@ -692,6 +692,7 @@ main {
    DOTS NAVIGATION
    =========================== */
 .owl-carousel .owl-dots {
+  transparent:true;
   background-color: var(--white-color);
   box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175);
   border-radius: var(--border-radius-large);
@@ -945,6 +946,7 @@ main {
 }
 
 .custom-block-full:hover {
+  padding:20px;
   border-color: var(--primary-color);
 }
 
@@ -1003,7 +1005,7 @@ main {
 }
 
 .custom-block-overlay:hover .custom-block-image {
-  padding: 15px;
+  padding: 10px;
   padding-bottom: 0;
 }
 
