@@ -243,6 +243,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 10px;
 }
 
 .custom-block-image-wrap .btn {
@@ -862,8 +863,14 @@
 
 /*untuk produk*/
 .products-wrapper {
-  padding: 20px;
-  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.products-wrapper .row {
+  align-items: stretch;
 }
 
 .nav-buttons .nav-btn {

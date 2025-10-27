@@ -692,8 +692,7 @@ main {
    DOTS NAVIGATION
    =========================== */
 .owl-carousel .owl-dots {
-  transparent:true;
-  background-color: var(--white-color);
+  background-color: transparent;
   box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175);
   border-radius: var(--border-radius-large);
   display: inline-block;
@@ -702,6 +701,7 @@ main {
 }
 
 .owl-dots {
+  margin-top:100px auto 0;
   text-align: center;
 }
 
@@ -822,6 +822,44 @@ main {
 /*---------------------------------------
   CUSTOM BLOCK              
 -----------------------------------------*/
+.custom-block.custom-block-overlay {
+  padding: 20px; /* sesuaikan jika mau lebih sempit/longgar */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  min-height: 380px; /* atur sesuai tampilanmu */
+  text-align: center;
+}
+
+.custom-block-overlay-info h5,
+.custom-block-overlay-info .h5 {
+  min-height: 48px;
+  margin-bottom: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* batasi maksimal 2 baris (butuh webkit) */
+  -webkit-box-orient: vertical;
+}
+
+.products-wrapper .row {
+  align-items: stretch;
+}
+
+/* Responsif: jika layar kecil, kurangi min-height dan tinggi gambar */
+@media (max-width: 767.98px) {
+  .custom-block.custom-block-overlay {
+    padding: 15px;
+    min-height: auto;
+  }
+  .custom-block-overlay .custom-block-image {
+    height: 160px;
+  }
+}
+
+
 .custom-block {
   border: 2px solid var(--primary-color);
   border-radius: var(--border-radius-medium);
@@ -856,9 +894,8 @@ main {
 
 .custom-block-image {
   border-radius: var(--border-radius-medium);
-  display: block;
-  width: 112px;
-  height: 112px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -881,7 +918,7 @@ main {
 }
 
 .custom-block-icon-wrap .section-overlay {
-  opacity: 0.25;
+  opacity: 0.20;
 }
 
 .custom-block-btn-group {
@@ -994,14 +1031,15 @@ main {
 
 .custom-block-overlay {
   border-color: transparent;
-  padding: 50px;
+  padding: 100px;
 }
 
 .custom-block-overlay .custom-block-image {
-  margin: auto;
   width: 100%;
-  height: 210px;
-  transition: all 0.3s;
+  height: 230px; /* bisa sesuaikan dengan tampilan */
+  object-fit: cover; /* agar proporsi gambar tidak rusak */
+  border-radius: var(--border-radius-medium);
+  transition: all 0.3s ease;
 }
 
 .custom-block-overlay:hover .custom-block-image {
