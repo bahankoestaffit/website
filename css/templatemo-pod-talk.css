@@ -501,53 +501,37 @@ main {
 }
 
 /* Tombol navigasi khusus hero-section */
-/* === Tombol Next & Prev Hero Section (pakai Bootstrap Icon) === */
-.hero-section .owl-nav {
+/* Tombol manual carousel */
+.hero-section .hero-prev,
+.hero-section .hero-next {
   position: absolute;
   top: 50%;
-  left: 0;
-  right: 0;
   transform: translateY(-50%);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 25px;
-  z-index: 10;
-  pointer-events: none; /* biar posisi tombol ga ganggu layout */
-}
-
-.hero-section .owl-nav button.owl-prev,
-.hero-section .owl-nav button.owl-next {
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.5);
   border: none;
-  border-radius: 50%;
+  color: #fff;
+  font-size: 2rem;
   width: 55px;
   height: 55px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-  font-size: 26px;
+  border-radius: 50%;
+  z-index: 10;
+  cursor: pointer;
   transition: all 0.3s ease;
-  pointer-events: auto; /* aktifkan klik */
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-.hero-section .owl-nav button.owl-prev:hover,
-.hero-section .owl-nav button.owl-next:hover {
-  background: #d10606;
-  transform: scale(1.1);
+.hero-section .hero-prev:hover,
+.hero-section .hero-next:hover {
+  background: #fcb42f;
+  transform: translateY(-50%) scale(1.1);
 }
 
-/* pastikan ikon bi-nya tampil besar dan sejajar */
-.hero-section .owl-nav i {
-  font-size: 30px;
-  line-height: 1;
+.hero-section .hero-prev {
+  left: 20px;
 }
 
-
-
-
+.hero-section .hero-next {
+  right: 20px;
+}
 
 /* Owl Item Wrapper */
 .owl-carousel .owl-item {
@@ -1039,33 +1023,170 @@ main {
 .custom-block .custom-block-info + div .badge:hover {
   background-color: var(--secondary-color);
 }
-
-.custom-block-full {
-  background-color: var(--section-bg-color);
-  border-color: transparent;
+/* ===========================
+   CUSTOM BLOCK FULL (baru)
+   =========================== */
+.custom-block.custom-block-full {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  margin: 20px auto;
+  max-width: 380px;
 }
 
-.custom-block-full:hover {
-  padding:20px;
-  border-color: var(--primary-color);
+.custom-block.custom-block-full:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
-.custom-block-full .custom-block-info {
-  padding: 20px;
-  padding-bottom: 0;
+/* Gambar utama */
+.custom-block-full .custom-block-image-wrap {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
 }
 
 .custom-block-full .custom-block-image {
   width: 100%;
-  height: 210px;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
-.custom-block-full .social-share {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 50px;
+/* Bagian isi */
+.custom-block-full .custom-block-info {
+  padding: 20px;
 }
+
+.custom-block-full .custom-block-info h5 {
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  color: #111;
+}
+
+/* Profil kecil di bawah judul */
+.custom-block-full .profile-block {
+  margin-top: 5px;
+}
+
+.custom-block-full .profile-block-image {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.custom-block-full .profile-block p {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.custom-block-full .profile-block strong {
+  color: #111;
+}
+
+/* Deskripsi singkat */
+.custom-block-full .custom-block-info p {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+/* Ikon bagian bawah */
+.custom-block-full .custom-block-bottom a {
+  font-size: 0.9rem;
+  color: #777;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.custom-block-full .custom-block-bottom a:hover {
+  color: #d10606;
+}
+
+.custom-block-full .custom-block-bottom span {
+  margin-left: 4px;
+}
+
+/* Tombol “Read more” */
+.custom-block-full .badge {
+  display: inline-block;
+  background: #d10606;
+  color: #fff;
+  border-radius: 30px;
+  padding: 7px 18px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background 0.3s ease;
+  text-decoration: none;
+}
+
+.custom-block-full .badge:hover {
+  background: #a00505;
+}
+
+/* ===========================
+   TOMBOL NAVIGASI ARTIKEL
+=========================== */
+.article-nav-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.article-btn {
+  background-color: #d10606;        /* Warna merah khas */
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Hover efek */
+.article-btn:hover {
+  background-color: #a00505;
+  transform: scale(1.05);
+}
+
+/* Saat tombol dinonaktifkan */
+.article-btn:disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/* Responsif untuk HP */
+@media (max-width: 576px) {
+  .article-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .custom-block.custom-block-full {
+    max-width: 100%;
+  }
+
+  .custom-block-full .custom-block-image-wrap {
+    height: 200px;
+  }
+}
+
 
 .custom-block-top small {
   color: var(--p-color);

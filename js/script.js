@@ -257,7 +257,7 @@ function initPartnershipCarousel() {
     return;
   }
 
-  const carouselElement = $('.partnership-carousel', '.hero-section .owl-carousel');
+  const carouselElement = $('.partnership-carousel');
   
   if (carouselElement.length === 0) {
     return;
@@ -283,6 +283,34 @@ function initPartnershipCarousel() {
     }
   });
 }
+
+const heroCarousel = $('.hero-section .owl-carousel');
+
+heroCarousel.owlCarousel({
+  loop: true,
+  margin: 20,
+  autoplay: true,
+  autoplayTimeout: 3000,
+  autoplayHoverPause: true,
+  dots: true,
+  nav: false, // biar nav bawaan owl tidak muncul
+  responsive: {
+    0: { items: 1 },
+    576: { items: 2 },
+    768: { items: 3 },
+    992: { items: 4 }
+  }
+});
+
+// tombol manual
+$('.hero-prev').click(function() {
+  heroCarousel.trigger('prev.owl.carousel');
+});
+
+$('.hero-next').click(function() {
+  heroCarousel.trigger('next.owl.carousel');
+});
+
 
 // ===========================
 // EXPORT FUNCTIONS

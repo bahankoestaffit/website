@@ -123,42 +123,75 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-function slideArticles(direction) {
-  const container = document.getElementById('articleContainer');
-  const scrollAmount = 350; // jarak geser per klik
-  if (direction === 'next') {
-    container.scrollLeft += scrollAmount;
-  } else {
-    container.scrollLeft -= scrollAmount;
+// ===========================
+// SLIDER ARTIKEL (FINAL VERSION)
+// ===========================
+document.addEventListener("DOMContentLoaded", () => {
+  const container = document.querySelector(".custom-block-container"); // Bungkus semua .custom-block-full dalam satu container
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+  const cards = container.querySelectorAll(".custom-block-full");
+  let currentIndex = 0;
+
+  // Tentukan jumlah kartu yang tampil berdasarkan lebar layar
+  function getCardsPerView() {
+    if (window.innerWidth <= 576) return 1;  // HP kecil
+    if (window.innerWidth <= 768) return 2;  // Tablet
+    if (window.innerWidth <= 992) return 3;  // Laptop kecil
+    return 4;                                // Desktop besar
   }
-}
-document.addEventListener("DOMContentLoaded", function () {
-  const container = document.querySelector("#article-carousel .row");
-  const nextBtn = document.querySelector("#next-article");
-  const prevBtn = document.querySelector("#prev-article");
 
-  let scrollAmount = 0;
-  const scrollStep = 400; // jarak scroll per klik
+  // Hitung total kartu
+  function getTotalCards() {
+    return cards.length;
+  }
 
+  // Update tombol navigasi
   function updateButtons() {
-    prevBtn.disabled = scrollAmount <= 0;
-    nextBtn.disabled = scrollAmount >= container.scrollWidth - container.clientWidth - 10;
+    const cardsPerView = getCardsPerView();
+    const totalCards = getTotalCards();
+    const maxIndex = totalCards - cardsPerView;
+
+    prevBtn.disabled = currentIndex === 0;
+    nextBtn.disabled = currentIndex >= maxIndex;
+
+    if (totalCards <= cardsPerView) {
+      prevBtn.style.display = "none";
+      nextBtn.style.display = "none";
+    } else {
+      prevBtn.style.display = "flex";
+      nextBtn.style.display = "flex";
+    }
   }
 
-  nextBtn.addEventListener("click", function () {
-    container.scrollBy({ left: scrollStep, behavior: "smooth" });
-    scrollAmount += scrollStep;
-    updateButtons();
-  });
+  // Geser kartu
+  function move(direction) {
+    const cardWidth = cards[0].offsetWidth + 24; // jarak antar kartu
+    const cardsPerView = getCardsPerView();
+    const totalCards = getTotalCards();
+    const maxIndex = totalCards - cardsPerView;
 
-  prevBtn.addEventListener("click", function () {
-    container.scrollBy({ left: -scrollStep, behavior: "smooth" });
-    scrollAmount -= scrollStep;
+    currentIndex += direction;
+    if (currentIndex < 0) currentIndex = 0;
+    if (currentIndex > maxIndex) currentIndex = maxIndex;
+
+    container.scrollTo({
+      left: cardWidth * currentIndex,
+      behavior: "smooth",
+    });
+
     updateButtons();
-  });
+  }
+
+  // Event listener
+  prevBtn.addEventListener("click", () => move(-1));
+  nextBtn.addEventListener("click", () => move(1));
+  window.addEventListener("resize", updateButtons);
 
   updateButtons();
 });
+
+
 
 
 // ===========================
