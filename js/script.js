@@ -257,7 +257,7 @@ function initPartnershipCarousel() {
     return;
   }
 
-  const carouselElement = $('.partnership-carousel');
+  const carouselElement = $('.partnership-carousel', '.hero-section .owl-carousel');
   
   if (carouselElement.length === 0) {
     return;
@@ -269,8 +269,12 @@ function initPartnershipCarousel() {
     autoplay: true,
     autoplayTimeout: 3000,
     autoplayHoverPause: true,
-    dots: true,
-    nav: false,
+    dots: false,
+    nav: true,
+    navText: [
+      '<i class="bi bi-arrow-left-circle"></i>',  // ikon kiri
+      '<i class="bi bi-arrow-right-circle"></i>'  // ikon kanan
+    ],
     responsive: {
       0: { items: 1 },
       576: { items: 2 },

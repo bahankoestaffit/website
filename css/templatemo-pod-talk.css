@@ -480,7 +480,7 @@ main {
   background-position: center;
   background-repeat: no-repeat;
   padding-top: 100px;
-  padding-bottom: 150px;
+  padding-bottom: 100px;
   position: relative;
   z-index: 0;
   overflow: hidden;
@@ -493,6 +493,61 @@ main {
   text-align: center;
   margin: 0 auto;
 }
+.hero-section .owl-carousel .owl-dots {
+  background: none !important;
+  box-shadow: none !important;
+  padding: 20px !important;
+  margin-top: 50px; /* opsional, bisa disesuaikan */
+}
+
+/* Tombol navigasi khusus hero-section */
+/* === Tombol Next & Prev Hero Section (pakai Bootstrap Icon) === */
+.hero-section .owl-nav {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 25px;
+  z-index: 10;
+  pointer-events: none; /* biar posisi tombol ga ganggu layout */
+}
+
+.hero-section .owl-nav button.owl-prev,
+.hero-section .owl-nav button.owl-next {
+  background: rgba(0, 0, 0, 0.4);
+  border: none;
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 26px;
+  transition: all 0.3s ease;
+  pointer-events: auto; /* aktifkan klik */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.hero-section .owl-nav button.owl-prev:hover,
+.hero-section .owl-nav button.owl-next:hover {
+  background: #d10606;
+  transform: scale(1.1);
+}
+
+/* pastikan ikon bi-nya tampil besar dan sejajar */
+.hero-section .owl-nav i {
+  font-size: 30px;
+  line-height: 1;
+}
+
+
+
+
 
 /* Owl Item Wrapper */
 .owl-carousel .owl-item {
@@ -544,10 +599,10 @@ main {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
   border-radius: 16px;
-  transition: all 0.4s ease;
+  transition: all 0.3s ease;
 }
 
 /* Blur effect for non-center items */
@@ -580,6 +635,7 @@ main {
   left: 0;
   padding: 10px;
   border-radius: 0 0 12px 12px;
+  text-align: center;
 }
 
 .owl-carousel-info h4 {
@@ -624,6 +680,13 @@ main {
   display: inline-block;
 }
 
+.owl-carousel-info .badge {
+  background: #d10606;
+  color: #fff;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  padding: 5px 10px;
+}
 /* ===========================
    CAROUSEL INFO (Gabung dari duplikasi)
    =========================== */
@@ -675,7 +738,6 @@ main {
   width: 40px;
   height: 40px;
   background: #fcb42f;
-  backdrop-filter: blur(10px); /* Fallback: gunakan dengan hati-hati di browser lama */
   border-radius: 50%;
   color: #fff;
   transition: all 0.3s ease;
@@ -688,51 +750,36 @@ main {
   transform: scale(1.1);
 }
 
-/* ===========================
-   DOTS NAVIGATION
-   =========================== */
-.owl-carousel .owl-dots {
-  background-color: transparent;
-  box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175);
-  border-radius: var(--border-radius-large);
-  display: inline-block;
-  margin: 40px auto 0;
-  padding: 10px 20px;
-}
 
-.owl-dots {
-  margin-top:100px auto 0;
-  text-align: center;
-}
-
-.owl-dots .owl-dot {
-  display: inline-block;
-  margin: 0 4px;
-}
-
-.owl-dots .owl-dot span {
+  .owl-carousel .owl-dot span {
   width: 12px;
   height: 12px;
-  background: #ccc;
-  display: block;
+  background: #fcb42f;
   border-radius: 50%;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s ease;
 }
 
-.owl-dots .owl-dot:hover span {
-  background: #bbb;
-  transform: scale(1.2);
-}
-
-.owl-dots .owl-dot.active span {
-  background: var(--secondary-color);
-  width: 30px;
-  border-radius: 20px;
-}
+  .owl-carousel .owl-dot.active span {
+    background: #d10606;
+    transform: scale(1.2);
+  }
+    
 
 /* ===========================
    RESPONSIVE DESIGN
    =========================== */
+
+   @media (max-width: 768px) {
+  .owl-carousel-info-wrap.item {
+    height: 320px;
+  }
+}
+
+@media (max-width: 480px) {
+  .owl-carousel-info-wrap.item {
+    height: 250px;
+  }
+}
 
 /* Tablet */
 @media (max-width: 991px) {
@@ -760,7 +807,7 @@ main {
   }
 
   .owl-carousel-info {
-    padding: 15px 12px 12px;
+    padding: 20px 12px 12px;
   }
 
   .owl-carousel-info h4 {
@@ -782,8 +829,11 @@ main {
   }
 
   .owl-carousel .owl-dots {
-    margin-top: 30px;
-    padding: 10px 20px;
+   position: relative;
+   margin-top: 30px; /* Tambah jarak dari item */
+    bottom: 0;
+   text-align: center;
+    padding-bottom: 20px; 
   }
 }
 
@@ -816,6 +866,13 @@ main {
   .owl-carousel-info h4 {
     font-size: 0.95rem;
   }
+}
+
+/* ===========================
+   HOVER EFFECT
+   =========================== */
+.owl-carousel-info-wrap.item:hover .owl-carousel-image {
+  transform: scale(1.05);
 }
 
 
