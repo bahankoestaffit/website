@@ -1,53 +1,54 @@
 
-  (function ($) {
+(function ($) {
   "use strict";
-    // MENU
-    $('.navbar-collapse a').on('click',function(){
-      $(".navbar-collapse").collapse('hide');
-    });
-    // CUSTOM LINK
-    $('.smoothscroll').click(function(){
-      var el = $(this).attr('href');
-      var elWrapped = $(el);
-      var header_height = $('.navbar').height();
-  
-      scrollToDiv(elWrapped,header_height);
-      return false;
-  
-      function scrollToDiv(element,navheight){
-        var offset = element.offset();
-        var offsetTop = offset.top;
-        var totalScroll = offsetTop-0;
-  
-        $('body,html').animate({
-        scrollTop: totalScroll
-        }, 300);
-      }
-    });
+  // MENU
+  $('.navbar-collapse a').on('click', function () {
+    $(".navbar-collapse").collapse('hide');
+  });
+  // CUSTOM LINK
+  $('.smoothscroll').click(function () {
+    var el = $(this).attr('href');
+    var elWrapped = $(el);
+    var header_height = $('.navbar').height();
 
-    $('.owl-carousel').owlCarousel({
-        center: true,
-        loop: true,
-        margin: 30,
-        items:3,
-        autoplay: true,
-         autoplayTimeout: 3000,
-      smartSpeed: 700,
-        responsiveClass: true,
-        responsive:{
-            0:{
-                items: 1,
-            },
-            768:{
-                items: 3,
-            },
-            1200:{
-                items: 4,
-            }
-        }
-    });
-  
-  })(window.jQuery);
+    scrollToDiv(elWrapped, header_height);
+    return false;
+
+    function scrollToDiv(element, navheight) {
+      var offset = element.offset();
+      var offsetTop = offset.top;
+      var totalScroll = offsetTop - 0;
+
+      $('body,html').animate({
+        scrollTop: totalScroll
+      }, 300);
+    }
+  });
+
+  $('.owl-carousel').owlCarousel({
+    center: true,
+    loop: true,
+    margin: 30,
+    items: 3,
+    autoplay: true,
+    autoplayTimeout: 3000,
+    smartSpeed: 700,
+    responsiveClass: true,
+    autoplayHoverPause: true,
+    responsive: {
+      0: {
+        items: 1,
+      },
+      768: {
+        items: 3,
+      },
+      1200: {
+        items: 4,
+      }
+    }
+  });
+
+})(window.jQuery);
 
 
 /////////////////////////
@@ -66,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
-   
+
     scrollToTopBtn.addEventListener("click", function () {
       window.scrollTo({
         top: 0,
@@ -127,42 +128,42 @@ document.addEventListener("DOMContentLoaded", function () {
 // SLIDER ARTIKEL (FINAL VERSION)
 // ===========================
 document.addEventListener('DOMContentLoaded', function () {
-    const container = document.getElementById('articleContainer');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const cards = document.querySelectorAll('.custom-block.custom-block-full');
+  const container = document.getElementById('articleContainer');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const cards = document.querySelectorAll('.custom-block.custom-block-full');
 
-    const cardsPerView = 3;
-    const totalCards = cards.length;
-    let currentIndex = 0;
+  const cardsPerView = 3;
+  const totalCards = cards.length;
+  let currentIndex = 0;
 
-    function updateButtons() {
-        prevBtn.disabled = currentIndex === 0;
-        nextBtn.disabled = currentIndex >= totalCards - cardsPerView;
-    }
+  function updateButtons() {
+    prevBtn.disabled = currentIndex === 0;
+    nextBtn.disabled = currentIndex >= totalCards - cardsPerView;
+  }
 
-    function updateSlide() {
-        const cardWidth = cards[0].offsetWidth + 20; // 20px = gap
-        container.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
-        updateButtons();
-    }
-
-    nextBtn.addEventListener('click', function () {
-        if (currentIndex < totalCards - cardsPerView) {
-            currentIndex++;
-            updateSlide();
-        }
-    });
-
-    prevBtn.addEventListener('click', function () {
-        if (currentIndex > 0) {
-            currentIndex--;
-            updateSlide();
-        }
-    });
-
-    // Inisialisasi awal
+  function updateSlide() {
+    const cardWidth = cards[0].offsetWidth + 20; // 20px = gap
+    container.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
     updateButtons();
+  }
+
+  nextBtn.addEventListener('click', function () {
+    if (currentIndex < totalCards - cardsPerView) {
+      currentIndex++;
+      updateSlide();
+    }
+  });
+
+  prevBtn.addEventListener('click', function () {
+    if (currentIndex > 0) {
+      currentIndex--;
+      updateSlide();
+    }
+  });
+
+  // Inisialisasi awal
+  updateButtons();
 });
 
 
