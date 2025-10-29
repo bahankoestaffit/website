@@ -282,15 +282,7 @@ function initArticlePopup() {
     });
   });
 
-  // Tutup popup
-  document.addEventListener('click', e => {
-    const popup = document.getElementById('articlePopup');
-    if (!popup) return;
 
-    if (e.target.classList.contains('close-btn') || e.target === popup) {
-      popup.style.display = 'none';
-    }
-  });
 }
 
 

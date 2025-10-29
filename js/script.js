@@ -208,6 +208,7 @@ function initPopup() {
         const closeBtn = wrapper.querySelector(".close-btn");
         if (closeBtn) {
           closeBtn.addEventListener("click", () => closePopup(wrapper));
+            e.stopPropagation(); // cegah bentrok dengan wrapper
         }
 
         // Klik di luar area konten untuk menutup
@@ -240,7 +241,7 @@ function closePopup(wrapper) {
 }
 
 // Jalankan setelah DOM siap
-document.addEventListener("DOMContentLoaded", initPopup);
+//document.addEventListener("DOMContentLoaded", initPopup);
 
 
 // ===========================
