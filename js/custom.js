@@ -39,10 +39,10 @@
                 items: 1,
             },
             768:{
-                items: 2,
+                items: 3,
             },
             1200:{
-                items: 3,
+                items: 4,
             }
         }
     });
@@ -126,70 +126,45 @@ document.addEventListener("DOMContentLoaded", function () {
 // ===========================
 // SLIDER ARTIKEL (FINAL VERSION)
 // ===========================
-document.addEventListener("DOMContentLoaded", () => {
-  const container = document.querySelector(".custom-block-container"); // Bungkus semua .custom-block-full dalam satu container
-  const prevBtn = document.getElementById("prevBtn");
-  const nextBtn = document.getElementById("nextBtn");
-  const cards = container.querySelectorAll(".custom-block-full");
-  let currentIndex = 0;
+document.addEventListener('DOMContentLoaded', function () {
+    const container = document.getElementById('articleContainer');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const cards = document.querySelectorAll('.custom-block.custom-block-full');
 
-  // Tentukan jumlah kartu yang tampil berdasarkan lebar layar
-  function getCardsPerView() {
-    if (window.innerWidth <= 576) return 1;  // HP kecil
-    if (window.innerWidth <= 768) return 2;  // Tablet
-    if (window.innerWidth <= 992) return 3;  // Laptop kecil
-    return 4;                                // Desktop besar
-  }
+    const cardsPerView = 3;
+    const totalCards = cards.length;
+    let currentIndex = 0;
 
-  // Hitung total kartu
-  function getTotalCards() {
-    return cards.length;
-  }
-
-  // Update tombol navigasi
-  function updateButtons() {
-    const cardsPerView = getCardsPerView();
-    const totalCards = getTotalCards();
-    const maxIndex = totalCards - cardsPerView;
-
-    prevBtn.disabled = currentIndex === 0;
-    nextBtn.disabled = currentIndex >= maxIndex;
-
-    if (totalCards <= cardsPerView) {
-      prevBtn.style.display = "none";
-      nextBtn.style.display = "none";
-    } else {
-      prevBtn.style.display = "flex";
-      nextBtn.style.display = "flex";
+    function updateButtons() {
+        prevBtn.disabled = currentIndex === 0;
+        nextBtn.disabled = currentIndex >= totalCards - cardsPerView;
     }
-  }
 
-  // Geser kartu
-  function move(direction) {
-    const cardWidth = cards[0].offsetWidth + 24; // jarak antar kartu
-    const cardsPerView = getCardsPerView();
-    const totalCards = getTotalCards();
-    const maxIndex = totalCards - cardsPerView;
+    function updateSlide() {
+        const cardWidth = cards[0].offsetWidth + 20; // 20px = gap
+        container.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+        updateButtons();
+    }
 
-    currentIndex += direction;
-    if (currentIndex < 0) currentIndex = 0;
-    if (currentIndex > maxIndex) currentIndex = maxIndex;
-
-    container.scrollTo({
-      left: cardWidth * currentIndex,
-      behavior: "smooth",
+    nextBtn.addEventListener('click', function () {
+        if (currentIndex < totalCards - cardsPerView) {
+            currentIndex++;
+            updateSlide();
+        }
     });
 
+    prevBtn.addEventListener('click', function () {
+        if (currentIndex > 0) {
+            currentIndex--;
+            updateSlide();
+        }
+    });
+
+    // Inisialisasi awal
     updateButtons();
-  }
-
-  // Event listener
-  prevBtn.addEventListener("click", () => move(-1));
-  nextBtn.addEventListener("click", () => move(1));
-  window.addEventListener("resize", updateButtons);
-
-  updateButtons();
 });
+
 
 
 
@@ -256,6 +231,66 @@ document.addEventListener("DOMContentLoaded", () => {
 
   updateButtons();
 });
+
+/////////////////////
+//JS UNTUK ARTIKELL//
+////////////////////
+// Fungsi load popup HTML ke halaman
+function loadArticlePopup(callback) {
+  fetch('artikel-popup.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('articlePopupContainer').innerHTML = data;
+      if (callback) callback();
+    })
+    .catch(error => console.error('Gagal memuat popup:', error));
+}
+
+// Jalankan setelah halaman siap
+document.addEventListener('DOMContentLoaded', () => {
+  // Muat popup HTML terlebih dahulu
+  loadArticlePopup(() => {
+    // Setelah popup dimuat, pasang event listener
+    initArticlePopup();
+  });
+});
+
+function initArticlePopup() {
+  // Event untuk tombol "Read more"
+  document.querySelectorAll('.custom-block-full .badge').forEach(button => {
+    button.addEventListener('click', e => {
+      e.preventDefault();
+
+      const card = button.closest('.custom-block-full');
+      const title = card.querySelector('h5 a').textContent;
+      const author = card.querySelector('.profile-block p').innerHTML;
+      const imageSrc = card.querySelector('.custom-block-image-wrap img').src;
+      const fullText = card.querySelector('.custom-block-info p').textContent;
+
+      const popup = document.getElementById('articlePopup');
+      const popupContent = document.getElementById('popupContent');
+
+      popupContent.innerHTML = `
+        <h3>${title}</h3>
+        <p><small>${author}</small></p>
+        <img src="${imageSrc}" style="width:100%;border-radius:10px;margin:15px 0;">
+        <p>${fullText}</p>
+      `;
+
+      popup.style.display = 'flex';
+    });
+  });
+
+  // Tutup popup
+  document.addEventListener('click', e => {
+    const popup = document.getElementById('articlePopup');
+    if (!popup) return;
+
+    if (e.target.classList.contains('close-btn') || e.target === popup) {
+      popup.style.display = 'none';
+    }
+  });
+}
 
 
 

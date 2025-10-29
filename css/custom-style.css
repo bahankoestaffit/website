@@ -690,7 +690,8 @@
   padding: 25px;
   text-align: center;
   width: 220px; /* Lebih besar dari sebelumnya */
-  margin: 0 20px; /* Kurangi jarak antar card */
+  height: 220px;
+  margin: 10px 20px; /* Kurangi jarak antar card */
   transition: all 0.3s ease;
   box-sizing: border-box; /* Tambahan */
   cursor: pointer; /* Tambahan jika interaktif */
@@ -698,7 +699,7 @@
 
 .partner-card img {
   width: 100px; /* Sedikit diperbesar */
-  height: auto;
+  height: 120px;
   margin-bottom: 12px;
   object-fit: contain; /* Pastikan gambar fit */
 }
@@ -941,7 +942,7 @@
 
 /*INI CSS FOOTERRR STARTTT*/
 .custom-footer {
-  background-image: url('../images/footer2.png'), linear-gradient(#d10606, #FFFFFF);/* tambahkan ini */
+  background-image: url('../images/footer2.png');/* tambahkan ini */
   background-size: cover;     /* supaya menyesuaikan lebar */
   background-position: center;
   background-repeat: no-repeat;
@@ -989,36 +990,36 @@
 /* Follow Us */
 .footer-center h3 {
   font-weight: 700;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .social-list {
-  color: #fff;
   list-style: none;
   padding: 0;
 }
 
 .social-list li {
+  margin-bottom: 8px;
+}
+
+.social-list a {
+  color: #fff; /* warna putih */
+  text-decoration: none;
   display: flex;
   align-items: center;
-  margin-bottom: 12px;
-  font-weight: 500;
+  gap: 8px; /* jarak antara ikon dan teks */
+  transition: color 0.3s ease;
+}
+
+.social-list a:hover {
+  color: #ffcc00; /* warna saat hover, bisa diganti */
 }
 
 .social-list i {
-  font-size: 24px;
-  margin-right: 10px;
-  color: #000;
-  background: rgba(255,255,255,0.4);
-  border-radius: 50%;
-  padding: 6px;
-  transition: all 0.3s ease;
+  font-size: 18px;
 }
 
-.social-list i:hover {
-  color: #fff;
-  background: #000;
-}
+
 
 /* Kritik & Saran */
 .footer-right h3 {
@@ -1122,4 +1123,86 @@
 .nav-buttons .nav-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+/* ==== CARD ARTIKEL ==== */
+.custom-block-full {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 450px;
+  background: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.custom-block-full:hover {
+  transform: translateY(-5px);
+}
+
+.custom-block-full .custom-block-image-wrap img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.custom-block-full .custom-block-info {
+  padding: 15px;
+}
+
+.custom-block-full .custom-block-info p {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.custom-block-full .badge {
+  background-color: #ff6600;
+  color: #fff;
+  border-radius: 20px;
+  padding: 6px 14px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: background 0.3s ease;
+}
+
+.custom-block-full .badge:hover {
+  background-color: #e65500;
+}
+
+/* ==== POPUP ARTIKEL ==== */
+.article-popup {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+
+/*CARD POPUPP BUAT ARTIKEL*/
+.article-popup .popup-content {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  width: 80%;
+  max-width: 700px;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.article-popup .close-btn {
+  position: absolute;
+  top: 15px; right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #333;
 }
