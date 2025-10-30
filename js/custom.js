@@ -47,6 +47,11 @@
       }
     }
   });
+$('.owl-carousel').on('click', '.owl-item', function() {
+  const owl = $('.owl-carousel').data('owl.carousel');
+  const index = $(this).index(); // ambil posisi item yang diklik
+  owl.to(index, 300); // pindahkan ke posisi index dengan animasi 300ms
+});
 
 })(window.jQuery);
 

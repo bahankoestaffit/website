@@ -203,12 +203,14 @@
   padding: 50px;
   transition: all 0.3s ease;
   position: relative;
+  overflow:visible;
 }
 
 .custom-block:hover {
   transform: translateY(-8px);
   box-shadow: 0 8px 25px rgba(209, 6, 6, 0.25);
   border-color: #b10505;
+  z-index: 10px;
 }
 
 .custom-block.d-flex {
@@ -922,20 +924,27 @@
 }
 
 .social-list a {
-  color: #fff; /* warna putih */
+  color: #fff; /* warna teks putih */
   text-decoration: none;
   display: flex;
   align-items: center;
-  gap: 8px; /* jarak antara ikon dan teks */
+  gap: 10px; /* jarak antara ikon dan teks */
   transition: color 0.3s ease;
 }
 
 .social-list a:hover {
-  color: #ffcc00; /* warna saat hover, bisa diganti */
+  color: #ffcc00; /* warna saat hover */
 }
 
+.social-list a img {
+  width: 20px; /* ukuran ikon */
+  vertical-align: middle;
+  filter: brightness(0) invert(1); /* ubah logo jadi putih */
+}
+
+
 .social-list i {
-  font-size: 18px;
+  font-size: 22px;
 }
 
 
