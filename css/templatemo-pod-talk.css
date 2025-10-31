@@ -1138,8 +1138,10 @@ main {
 =========================== */
 .article-nav-buttons {
   display: flex;
-  gap: 10px;
+  gap: 5px;
+  justify-content: flex-end; /* ⬅️ pindahkan tombol ke kanan */
 }
+
 
 .article-btn {
   background-color: #d10606;        /* Warna merah khas */
@@ -1165,8 +1167,8 @@ main {
 
 /* Saat tombol dinonaktifkan */
 .article-btn:disabled {
-  background-color: #ccc;
-  color: #666;
+  background-color: #d29090;
+  color: #ccc;
   cursor: not-allowed;
   box-shadow: none;
   transform: none;

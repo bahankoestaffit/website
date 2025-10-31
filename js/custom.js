@@ -56,37 +56,16 @@ $('.owl-carousel').on('click', '.owl-item', function() {
 })(window.jQuery);
 
 
-/////////////////////////
-//TOMBOL KEMBALI KEATAS//
-/////////////////////////  
-document.addEventListener("DOMContentLoaded", function () {
-  const scrollToTopBtn = document.getElementById("scrollToTopBtn");
-
-  if (scrollToTopBtn) {
-    // Tampilkan tombol saat user scroll ke bawah
-    window.addEventListener("scroll", function () {
-      if (window.scrollY > 200) {
-        scrollToTopBtn.style.display = "block";
-      } else {
-        scrollToTopBtn.style.display = "none";
-      }
-    });
-
-
-    scrollToTopBtn.addEventListener("click", function () {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-    });
-  }
-});
 
 document.addEventListener("DOMContentLoaded", function () {
-  const container = document.querySelector(".podcast-container");
-  const nextBtn = document.querySelector(".next-btn");
-  const prevBtn = document.querySelector(".prev-btn");
-  const cards = Array.from(document.querySelectorAll(".custom-block"));
+ const container =
+  document.querySelector(".podcast-container") ||
+  document.getElementById("articleContainer");
+
+const nextBtn = document.querySelector(".next-btn");
+const prevBtn = document.querySelector(".prev-btn");
+const cards = Array.from(container.querySelectorAll(".custom-block"));
+
 
   let index = 0;
   const visible = 2;
@@ -132,44 +111,44 @@ document.addEventListener("DOMContentLoaded", function () {
 // ===========================
 // SLIDER ARTIKEL (FINAL VERSION)
 // ===========================
-document.addEventListener('DOMContentLoaded', function () {
-  const container = document.getElementById('articleContainer');
-  const prevBtn = document.getElementById('prevBtn');
-  const nextBtn = document.getElementById('nextBtn');
-  const cards = document.querySelectorAll('.custom-block.custom-block-full');
 
-  const cardsPerView = 3;
-  const totalCards = cards.length;
-  let currentIndex = 0;
+document.addEventListener("DOMContentLoaded", function () {
+  const container = document.getElementById("articleContainer");
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+
+  const card = container.querySelector(".custom-block-full");
+  const cardWidth = card.offsetWidth + 16; // 16px = jarak antar card (me-3)
+  const visibleCards = Math.floor(container.parentElement.offsetWidth / cardWidth);
+  const totalCards = container.children.length;
+  
+  let index = 0;
 
   function updateButtons() {
-    prevBtn.disabled = currentIndex === 0;
-    nextBtn.disabled = currentIndex >= totalCards - cardsPerView;
+    prevBtn.disabled = index === 0;
+    nextBtn.disabled = index >= totalCards - visibleCards;
   }
 
-  function updateSlide() {
-    const cardWidth = cards[0].offsetWidth + 20; // 20px = gap
-    container.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
-    updateButtons();
-  }
-
-  nextBtn.addEventListener('click', function () {
-    if (currentIndex < totalCards - cardsPerView) {
-      currentIndex++;
-      updateSlide();
+  nextBtn.addEventListener("click", () => {
+    if (index < totalCards - visibleCards) {
+      index++;
+      container.style.transform = `translateX(-${index * cardWidth}px)`;
+      updateButtons();
     }
   });
 
-  prevBtn.addEventListener('click', function () {
-    if (currentIndex > 0) {
-      currentIndex--;
-      updateSlide();
+  prevBtn.addEventListener("click", () => {
+    if (index > 0) {
+      index--;
+      container.style.transform = `translateX(-${index * cardWidth}px)`;
+      updateButtons();
     }
   });
 
-  // Inisialisasi awal
-  updateButtons();
+  updateButtons(); // atur state awal tombol
 });
+
+
 
 
 
