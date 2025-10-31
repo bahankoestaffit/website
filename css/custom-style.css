@@ -1140,11 +1140,11 @@
 .member-banner {
   width: 100%;
   background: linear-gradient(135deg, #b5101b 60%, #ff960d);
-  border-bottom-left-radius: 80px;
-  border-bottom-right-radius: 80px;
+  border-top-left-radius: 90px;
+  border-bottom-right-radius: 90px;
   overflow: hidden;
   position: relative;
-  padding: 40px 0; /* lebih kecil dari sebelumnya */
+  padding: 50px 0; /* lebih kecil dari sebelumnya */
 }
 
 .member-banner-container {
