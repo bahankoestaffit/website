@@ -6,44 +6,35 @@
   height: 50px;
   width: 100%;
   position: relative;
-  padding: 6px 0;
+  padding: 10px 0;
   z-index: 1000;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   box-sizing: border-box; /* Tambahan untuk konsistensi layout */
 }
 
-.language-switcher {
-  position: absolute;
-  top: 15px;
-  right: 40px;
-  z-index: 1001;
-  background: transparent;
-  text-align: right;
-  padding-right: 40px;
-}
-
-.language-switcher button {
-  background: transparent;
-  border: none;
-  color: var(--white-color); /* Menggunakan variabel */
-  font-weight: bold;
+.hubungi-btn {
+  background-color: #fff; /* warna tombol putih */
+  color: #a00505; /* warna teks merah */
+  border: 2px solid #fff;
+  border-radius: 25px;
+  padding: 6px 18px;
+  font-weight: 600;
   font-size: 14px;
-  cursor: pointer;
-  margin-left: 10px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   transition: all 0.3s ease;
-  padding: 5px 10px;
-  border-radius: 4px;
-  outline: none; /* Tambahan untuk konsistensi */
 }
 
-.language-switcher button:hover {
-  color: var(--secondary-color); /* Menggunakan variabel */
-  background: rgba(255, 255, 255, 0.1);
+.hubungi-btn:hover {
+  background-color: #ffd700; /* efek hover: kuning keemasan */
+  color: #a00505;
+  border-color: #ffd700;
 }
 
-.language-switcher button.active {
-  color: var(--secondary-color); /* Menggunakan variabel */
-  background: rgba(255, 255, 255, 0.15);
+.hubungi-btn i {
+  font-size: 14px;
 }
 
 /* ===========================
@@ -1225,3 +1216,4 @@
   border-bottom-left-radius: 80px;
   border-bottom-right-radius: 80px;
 }
+
