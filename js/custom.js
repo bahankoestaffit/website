@@ -142,12 +142,6 @@ document.addEventListener("DOMContentLoaded", () => {
   updateButtons();
 });
 
-
-
-
-
-
-
 // ===========================
 // UNTUK PRODUK
 // ===========================
