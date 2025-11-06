@@ -773,18 +773,36 @@
 .next-btn {
   right: 8px;
 }
-
-/*untuk produk*/
 .products-wrapper {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: visible;
+  scroll-behavior: smooth;
+  padding: 10px 0;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.products-wrapper::-webkit-scrollbar {
+  display: none;
 }
 
 .products-wrapper .row {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1px;
+  justify-content: flex-start;
   align-items: stretch;
+  padding-right: 5px;
 }
+
+.product-card {
+  flex: 0 0 calc(25% - 24px); /* 4 per tampilan */
+  box-sizing: border-box;
+  min-width: 250px;
+}
+
+
 
 .nav-buttons .nav-btn {
   background: #d10606;
@@ -1004,12 +1022,14 @@
   position: relative;
 }
 
+
+
 .article-container {
   display: flex;
-  gap: 20px;
+  gap: 35px;
   padding: 20px;
-  scroll-behavior: smooth;
-  overflow-x: auto;
+   transition: transform 0.4s ease;
+  will-change: transform;
   scrollbar-width: none; /* Firefox */
 }
 .article-container::-webkit-scrollbar {
@@ -1216,4 +1236,3 @@
   border-bottom-left-radius: 80px;
   border-bottom-right-radius: 80px;
 }
-

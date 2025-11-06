@@ -111,17 +111,15 @@ const cards = Array.from(container.querySelectorAll(".custom-block"));
 // ===========================
 // SLIDER ARTIKEL (FINAL VERSION)
 // ===========================
-
 document.addEventListener("DOMContentLoaded", function () {
   const container = document.getElementById("articleContainer");
   const prevBtn = document.getElementById("prevBtn");
   const nextBtn = document.getElementById("nextBtn");
-
-  const card = container.querySelector(".custom-block-full");
-  const cardWidth = card.offsetWidth + 16; // 16px = jarak antar card (me-3)
-  const visibleCards = Math.floor(container.parentElement.offsetWidth / cardWidth);
+  const card = container.querySelector(".custom-block.custom-block-full");
+  const cardWidth = card.offsetWidth + 35; // jarak antar card (me-3 ~ 35px)
+  const visibleCards = 3;
   const totalCards = container.children.length;
-  
+
   let index = 0;
 
   function updateButtons() {
@@ -145,7 +143,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  updateButtons(); // atur state awal tombol
+  updateButtons();
 });
 
 
@@ -158,10 +156,11 @@ document.addEventListener("DOMContentLoaded", function () {
 // UNTUK PRODUK
 // ===========================
 document.addEventListener("DOMContentLoaded", () => {
-  const container = document.getElementById("productsContainer");
+  const wrapper = document.querySelector(".products-wrapper"); // elemen yang bisa discroll
+  const container = document.getElementById("productsContainer"); // row berisi kartu
   const prevBtn = document.getElementById("prevBtn");
   const nextBtn = document.getElementById("nextBtn");
-  const cards = container.querySelectorAll(".col-lg-3");
+  const cards = container.querySelectorAll(".custom-block.custom-block-overlay");
   let currentIndex = 0;
 
   function getCardsPerView() {
@@ -171,13 +170,9 @@ document.addEventListener("DOMContentLoaded", () => {
     return 4;
   }
 
-  function getTotalCards() {
-    return cards.length;
-  }
-
   function updateButtons() {
     const cardsPerView = getCardsPerView();
-    const totalCards = getTotalCards();
+    const totalCards = cards.length;
     const maxIndex = totalCards - cardsPerView;
 
     prevBtn.disabled = currentIndex === 0;
@@ -192,30 +187,57 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  function move(direction) {
-    const cardWidth = cards[0].offsetWidth + 24; // termasuk margin/gap
-    const cardsPerView = getCardsPerView();
-    const totalCards = getTotalCards();
-    const maxIndex = totalCards - cardsPerView;
+function move(direction) {
+  const cardWidth = cards[0].offsetWidth;
+  const gap = 1; // sesuaikan dengan CSS kamu (gap: 1px)
+  const cardsPerView = getCardsPerView();
+  const totalCards = cards.length;
+  const maxIndex = totalCards - cardsPerView;
 
-    currentIndex += direction;
-    if (currentIndex < 0) currentIndex = 0;
-    if (currentIndex > maxIndex) currentIndex = maxIndex;
+  currentIndex += direction;
+  if (currentIndex < 0) currentIndex = 0;
+  if (currentIndex > maxIndex) currentIndex = maxIndex;
 
-    container.scrollTo({
-      left: cardWidth * currentIndex,
-      behavior: "smooth",
-    });
+  // Hitung posisi scroll yang diinginkan
+  let scrollAmount = (cardWidth + gap) * currentIndex;
 
-    updateButtons();
+  const maxScrollLeft = wrapper.scrollWidth - wrapper.clientWidth;
+
+  // Tambahkan offset kecil agar pas di batas kanan & kiri
+  if (direction > 0) {
+    // Saat klik NEXT, maju sedikit agar tidak ada sisa di kanan
+    scrollAmount += 25;
+  } else if (direction < 0) {
+    // Saat klik PREV, mundur sedikit biar tidak potong di kiri
+    scrollAmount -= 20;
   }
 
+  // Pastikan scroll tidak keluar batas
+  const finalScroll = Math.max(0, Math.min(scrollAmount, maxScrollLeft));
+
+  wrapper.scrollTo({
+    left: finalScroll,
+    behavior: "smooth",
+  });
+
+  updateButtons();
+}
+
+
+  // Event listeners
   prevBtn.addEventListener("click", () => move(-1));
   nextBtn.addEventListener("click", () => move(1));
-  window.addEventListener("resize", updateButtons);
+
+  // Resize fix
+  let resizeTimeout;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(updateButtons, 300);
+  });
 
   updateButtons();
 });
+
 
 /////////////////////
 //JS UNTUK ARTIKELL//

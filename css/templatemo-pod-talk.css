@@ -141,7 +141,7 @@ b, strong {
 
 .section-title-wrap::after {
   content: "";
-  background: var(--section-bg-color);
+  background: var(--primary-color);
   width: 100%;
   height: 2px;
   position: absolute;
@@ -151,14 +151,8 @@ b, strong {
   pointer-events: none;
 }
 
-.section-title {
-  background: var(--section-bg-color);
-  border-radius: var(--border-radius-large);
-  display: inline-block;
-  position: relative;
-  z-index: 2;
-  margin-bottom: 0;
-  padding: 10px 25px;
+.col-lg-12{
+  gap: 20px;
 }
 
 .section-padding {
@@ -865,46 +859,93 @@ main {
 /*---------------------------------------
   CUSTOM BLOCK  buat produk      
 -----------------------------------------*/
-.custom-block.custom-block-overlay {
-  padding: 10px; 
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  height: 100%;
-  min-height: 180px; 
-  text-align: center;
+/* ===============================
+   PRODUK SECTION
+   =============================== */
+
+.products-wrapper {
   position: relative;
-  overflow: visible;
+  overflow: hidden; /* jaga agar produk tidak keluar area */
+  padding: 10px 0;
+  max-width: 1200px; /* biar pas 4 produk */
+  margin: 0 auto; /* tengahkan container */
+}
+
+.products-wrapper .row {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: visible !important; /* biar efek hover muncul */
+  align-items: stretch;
+  justify-content: center; /* ratakan card */
+  gap: 24px;
+}
+
+/* ===============================
+   CARD PRODUK
+   =============================== */
+.custom-block.custom-block-overlay {
+  flex: 0 0 calc(25% - 18px); /* 4 produk pas di 1 baris */
   border: 2px solid #d10606;
   border-radius: 20px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: #fff;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  overflow: visible; /* agar hover tidak terpotong */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   z-index: 0;
 }
 
+.custom-block.custom-block-overlay:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(209, 6, 6, 0.25);
+  border-color: #b10505;
+  z-index: 10; /* pastikan hover di atas yang lain */
+}
+
+/* ===============================
+   GAMBAR PRODUK
+   =============================== */
+.custom-block.custom-block-overlay img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 18px 18px 0 0;
+  display: block;
+}
+
+/* ===============================
+   JUDUL PRODUK
+   =============================== */
 .custom-block-overlay-info h5,
 .custom-block-overlay-info .h5 {
   min-height: 48px;
   margin-bottom: 8px;
-  overflow: visible;
+  overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 2; 
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
 
-.products-wrapper .row {
-  align-items: stretch;
+/* ===============================
+   RESPONSIF
+   =============================== */
+@media (max-width: 992px) {
+  .custom-block.custom-block-overlay {
+    flex: 0 0 calc(50% - 18px); /* tampil 2 produk per baris */
+  }
 }
 
-/* Responsif: jika layar kecil, kurangi min-height dan tinggi gambar */
-@media (max-width: 767.98px) {
+@media (max-width: 576px) {
   .custom-block.custom-block-overlay {
-    padding: 15px;
-    min-height: auto;
+    flex: 0 0 100%; /* tampil 1 produk per baris */
   }
-  .custom-block-overlay .custom-block-image {
-    height: 160px;
+  .custom-block-overlay img {
+    height: 180px;
   }
 }
 
@@ -1033,7 +1074,7 @@ main {
 .custom-block.custom-block-full {
   background: #fff;
   border-radius: 16px;
-  overflow: hidden;
+  overflow: visible;
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   margin: 20px auto;
@@ -1116,22 +1157,7 @@ main {
   margin-left: 4px;
 }
 
-/* Tombol “Read more” */
-.custom-block-full .badge {
-  display: inline-block;
-  background: #d10606;
-  color: #fff;
-  border-radius: 30px;
-  padding: 7px 18px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  transition: background 0.3s ease;
-  text-decoration: none;
-}
 
-.custom-block-full .badge:hover {
-  background: #a00505;
-}
 
 /* ===========================
    TOMBOL NAVIGASI ARTIKEL
@@ -1139,6 +1165,7 @@ main {
 .article-nav-buttons {
   display: flex;
   gap: 5px;
+  margin-top: 100px;
   justify-content: flex-end; /* ⬅️ pindahkan tombol ke kanan */
 }
 
