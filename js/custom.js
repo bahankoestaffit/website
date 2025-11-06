@@ -108,41 +108,37 @@ const cards = Array.from(container.querySelectorAll(".custom-block"));
 });
 
 
-// ===========================
-// SLIDER ARTIKEL (FINAL VERSION)
-// ===========================
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
+  const wrapper = document.querySelector(".article-wrapper");
   const container = document.getElementById("articleContainer");
-  const prevBtn = document.getElementById("prevBtn");
-  const nextBtn = document.getElementById("nextBtn");
+  const prevBtn = document.getElementById("prevBtnArtikel");
+  const nextBtn = document.getElementById("nextBtnArtikel");
   const card = container.querySelector(".custom-block.custom-block-full");
-  const cardWidth = card.offsetWidth + 35; // jarak antar card (me-3 ~ 35px)
-  const visibleCards = 3;
-  const totalCards = container.children.length;
+  if (!card) return; // jika belum ada card
 
-  let index = 0;
+  const cardWidth = card.offsetWidth + 35; // + gap antar kartu
+  const maxScroll = container.scrollWidth - wrapper.offsetWidth;
 
+  // Fungsi update tombol (disable kalau di ujung)
   function updateButtons() {
-    prevBtn.disabled = index === 0;
-    nextBtn.disabled = index >= totalCards - visibleCards;
+    prevBtn.disabled = container.scrollLeft <= 0;
+    nextBtn.disabled = container.scrollLeft >= maxScroll - 5;
   }
 
+  // Tombol Next
   nextBtn.addEventListener("click", () => {
-    if (index < totalCards - visibleCards) {
-      index++;
-      container.style.transform = `translateX(-${index * cardWidth}px)`;
-      updateButtons();
-    }
+    container.scrollBy({ left: cardWidth, behavior: "smooth" });
+    setTimeout(updateButtons, 400);
   });
 
+  // Tombol Prev
   prevBtn.addEventListener("click", () => {
-    if (index > 0) {
-      index--;
-      container.style.transform = `translateX(-${index * cardWidth}px)`;
-      updateButtons();
-    }
+    container.scrollBy({ left: -cardWidth, behavior: "smooth" });
+    setTimeout(updateButtons, 400);
   });
 
+  // Update tombol saat digulir manual
+  container.addEventListener("scroll", updateButtons);
   updateButtons();
 });
 
@@ -206,7 +202,7 @@ function move(direction) {
   // Tambahkan offset kecil agar pas di batas kanan & kiri
   if (direction > 0) {
     // Saat klik NEXT, maju sedikit agar tidak ada sisa di kanan
-    scrollAmount += 25;
+    scrollAmount += 23;
   } else if (direction < 0) {
     // Saat klik PREV, mundur sedikit biar tidak potong di kiri
     scrollAmount -= 20;

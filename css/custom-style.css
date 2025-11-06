@@ -1022,8 +1022,6 @@
   position: relative;
 }
 
-
-
 .article-container {
   display: flex;
   gap: 35px;
@@ -1064,53 +1062,134 @@
   cursor: not-allowed;
 }
 
+/* ==== WRAPPER SLIDER ARTIKEL ==== */
+.article-wrapper {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.article-container {
+  display: flex;
+  gap: 35px;
+  scroll-behavior: smooth;
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE */
+}
+.article-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
 /* ==== CARD ARTIKEL ==== */
-.custom-block-full {
+.custom-block.custom-block-full {
+  flex: 0 0 auto;
+  width: 380px; /* 🔹 Lebar card dikembalikan seperti sebelumnya */
+  background: #fff;
+  border: 1.5px solid #d10606;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 450px;
-  background: #fff;
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   transition: transform 0.3s ease;
 }
-
-.custom-block-full:hover {
-  transform: translateY(-5px);
+.custom-block.custom-block-full:hover {
+  transform: translateY(-4px);
 }
 
-.custom-block-full .custom-block-image-wrap img {
+.custom-block-full .custom-block-image-wrap {
   width: 100%;
-  height: 200px;
+  height: 180px;
+  overflow: hidden;
+}
+.custom-block-full .custom-block-image {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
-
 .custom-block-full .custom-block-info {
   padding: 15px;
 }
-
+/* ==== BATAS TEKS 3 BARIS ==== */
 .custom-block-full .custom-block-info p {
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 3; /* 🔹 Hanya tampil 3 baris */
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #444;
 }
 
-.custom-block-full .badge {
-  background-color: #ff6600;
+/* ==== Tombol “Read More” ==== */
+.read-more-btn {
+  align-self: flex-start;
+  background-color: #d10606;
   color: #fff;
+  border: none;
   border-radius: 20px;
   padding: 6px 14px;
-  text-decoration: none;
-  font-size: 0.85rem;
-  transition: background 0.3s ease;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.custom-block-full .badge:hover {
-  background-color: #e65500;
+.read-more-btn:hover {
+  background-color: #ff960d;
+}
+
+/* ==== Responsif ==== */
+@media (max-width: 768px) {
+  .custom-block.custom-block-full {
+    width: 240px;
+  }
+}
+/* ==== TOMBOL NAVIGASI ==== */
+.article-nav-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+.article-btn {
+  background-color: #d10606;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+.article-btn:hover {
+  background-color: #a00505;
+  transform: scale(1.05);
+}
+.article-btn:disabled {
+  background-color: #d29090;
+  color: #ccc;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ==== RESPONSIVE ==== */
+@media (max-width: 768px) {
+  .custom-block.custom-block-full {
+    width: 260px;
+  }
+  .article-nav-buttons {
+    justify-content: center;
+  }
 }
 
 /* ==== POPUP ARTIKEL ==== */
